@@ -1,27 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/leonachang/Desktop/MorSensor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v21/values-v21.xml",
+            "outputFile": "/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v21/values-v21.xml",
             "map": [
-                {
-                    "source": "/Users/leonachang/Desktop/MorSensor-act-ser/app/src/main/res/values-v21/styles.xml",
-                    "from": {
-                        "startLines": "3,5,17",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "57,156,687",
-                        "endLines": "3,15,19",
-                        "endColumns": "51,12,12",
-                        "endOffsets": "104,679,821"
-                    },
-                    "to": {
-                        "startLines": "3,4,233",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "117,169,17299",
-                        "endLines": "3,14,235",
-                        "endColumns": "51,12,12",
-                        "endOffsets": "164,682,17431"
-                    }
-                },
                 {
                     "source": "/Users/leonachang/.gradle/caches/transforms-1/files-1.1/appcompat-v7-22.2.0.aar/61579330c2f992eb5f90df4c7abc73d1/res/values-v21/values-v21.xml",
                     "from": {
@@ -56,6 +37,25 @@
                         "startOffsets": "55",
                         "endColumns": "61",
                         "endOffsets": "112"
+                    }
+                },
+                {
+                    "source": "/Users/leonachang/Desktop/Mor-act-ser/app/src/main/res/values-v21/styles.xml",
+                    "from": {
+                        "startLines": "3,5,17",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "57,156,687",
+                        "endLines": "3,15,19",
+                        "endColumns": "51,12,12",
+                        "endOffsets": "104,679,821"
+                    },
+                    "to": {
+                        "startLines": "3,4,233",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "117,169,17299",
+                        "endLines": "3,14,235",
+                        "endColumns": "51,12,12",
+                        "endOffsets": "164,682,17431"
                     }
                 }
             ]

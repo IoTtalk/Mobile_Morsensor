@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.ftdi.j2xx.D2xxManager;
 import com.ftdi.j2xx.FT_Device;
 
+import org.json.JSONArray;
+
 import tw.org.cic.dataManage.DataTransform;
 import tw.org.cic.dataManage.MorSensorParameter;
 
@@ -117,6 +119,8 @@ public class Mainservice extends Service{
     final int MAX_NUM_BYTES = 65536;
 
     static boolean bReadTheadEnable = false;
+
+    Dan dan = new Dan();
 
 
     ImageView imgInfo;
@@ -583,7 +587,14 @@ public class Mainservice extends Service{
         public void run() {
             byte status;
             Message msg;
-
+            dan.init();
+            try{
+                dan.device_registration_with_retry(null);
+                Log.d("mainservice ","register success");
+            }
+            catch(InterruptedException e){
+                Log.e("mainservice ","register failed "+e);
+            }
             while (true) {
                 try {
                     Thread.sleep(100);
@@ -716,12 +727,44 @@ public class Mainservice extends Service{
     }
 
 
-    public static void displaySensorData() {
+    public void displaySensorData() {
+
         float[] data = DataTransform.getData();
         Log.i(TAG, "Humi:" + data[1] + " UV:" + data[2] + " Alcohol:" + data[3]);
         MorSensorParameter.humi_data = (int) data[1];
         MorSensorParameter.uv_data = ((int) (data[2] * 100) / 100f);
         MorSensorParameter.alcohol_data = ((int) (data[3] * 1000) / 1000f);
+        new Thread(new Runnable(){
+            JSONArray humi = new JSONArray();
+            JSONArray uv = new JSONArray();
+            JSONArray alc = new JSONArray();
+            JSONArray humi_o = new JSONArray();
+            JSONArray uv_o = new JSONArray();
+            JSONArray alc_o = new JSONArray();
+            @Override
+            public void run(){
+                try{
+                    humi.put(MorSensorParameter.humi_data);
+                    uv.put(MorSensorParameter.uv_data);
+                    alc.put(MorSensorParameter.alcohol_data);
+                    dan.push("mobile_humi",humi);
+                    dan.push("mobile_uv",uv);
+                    dan.push("mobile_alc",alc);
+
+                    humi_o = dan.pull("mobile_humi_o");
+                    uv_o = dan.pull("mobile_uv_o");
+                    alc_o = dan.pull("mobile_alc_o");
+
+                    if(humi_o!=null){
+                        Log.v("mainservice display ","humi is "+humi_o);
+                    }
+
+                }
+                catch(Exception e){
+                    Log.e("mainservice display ","error cuz "+e);
+                }
+            }
+        }).start();
         //tv_humi.setText("Humidity: " + MorSensorParameter.humi_data);
         //tv_uv.setText("UV: " + MorSensorParameter.uv_data);
         //tv_alcohol.setText("Alcohol: " + MorSensorParameter.alcohol_data);//((int) (data[3] * 1000) / 1000f) + "\n" + ((int) (data[4] * 1000) / 1000f)

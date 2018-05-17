@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/leonachang/Desktop/MorSensor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
                     "source": "/Users/leonachang/.gradle/caches/transforms-1/files-1.1/design-22.2.0.aar/548182ac1ceedf126003b98a8d0b3e35/res/values-sw600dp/values-sw600dp.xml",

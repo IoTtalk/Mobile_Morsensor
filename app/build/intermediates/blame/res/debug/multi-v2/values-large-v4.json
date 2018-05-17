@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/leonachang/Desktop/MorSensor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
+            "outputFile": "/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
             "map": [
-                {
-                    "source": "/Users/leonachang/Desktop/MorSensor-act-ser/app/src/main/res/values-large/dimens.xml",
-                    "from": {
-                        "startLines": "1,2",
-                        "startColumns": "4,4",
-                        "startOffsets": "17,76",
-                        "endColumns": "57,55",
-                        "endOffsets": "70,127"
-                    },
-                    "to": {
-                        "startLines": "6,7",
-                        "startColumns": "4,4",
-                        "startOffsets": "312,370",
-                        "endColumns": "57,55",
-                        "endOffsets": "365,421"
-                    }
-                },
                 {
                     "source": "/Users/leonachang/.gradle/caches/transforms-1/files-1.1/appcompat-v7-22.2.0.aar/61579330c2f992eb5f90df4c7abc73d1/res/values-large/values-large.xml",
                     "from": {
@@ -35,6 +18,23 @@
                         "startOffsets": "55,117,189,248,426,493,560,626,692,747,851",
                         "endColumns": "61,71,58,63,66,66,65,65,54,103,115",
                         "endOffsets": "112,184,243,307,488,555,621,687,742,846,962"
+                    }
+                },
+                {
+                    "source": "/Users/leonachang/Desktop/Mor-act-ser/app/src/main/res/values-large/dimens.xml",
+                    "from": {
+                        "startLines": "1,2",
+                        "startColumns": "4,4",
+                        "startOffsets": "17,76",
+                        "endColumns": "57,55",
+                        "endOffsets": "70,127"
+                    },
+                    "to": {
+                        "startLines": "6,7",
+                        "startColumns": "4,4",
+                        "startOffsets": "312,370",
+                        "endColumns": "57,55",
+                        "endOffsets": "365,421"
                     }
                 }
             ]

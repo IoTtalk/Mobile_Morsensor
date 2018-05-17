@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/leonachang/Desktop/MorSensor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es/values-es.xml",
+            "outputFile": "/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es/values-es.xml",
             "map": [
                 {
                     "source": "/Users/leonachang/.gradle/caches/transforms-1/files-1.1/appcompat-v7-22.2.0.aar/61579330c2f992eb5f90df4c7abc73d1/res/values-es/values-es.xml",
