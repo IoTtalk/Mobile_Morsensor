@@ -19,11 +19,6 @@ import android.util.Log;
 
 
 
-class Csmerror{
-    void Csmerror(Exception e){
-
-    }
-}
 public class Csmapi {
 
     //Endpoint will change in DAN

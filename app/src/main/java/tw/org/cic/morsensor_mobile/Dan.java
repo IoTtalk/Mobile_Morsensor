@@ -119,7 +119,7 @@ public class Dan extends Thread{
 
     public String get_mac_addr() throws SocketException {
         Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-        Log.d("TEST_BUG", " interfaceName = " + interfaces );
+        Log.d("dan get_mac", " interfaceName = " + interfaces );
         while (interfaces.hasMoreElements()) {
             NetworkInterface netWork = interfaces.nextElement();
             byte[] by = netWork.getHardwareAddress();
@@ -134,49 +134,17 @@ public class Dan extends Thread{
                 builder.deleteCharAt(builder.length() - 1);
             }
             String mac = builder.toString();
-            Log.d("TEST_BUG", "interfaceName="+netWork.getName()+", mac="+mac);
+            Log.d("dan get_mac", "interfaceName="+netWork.getName()+", mac="+mac);
             return mac;
             /*if (netWork.getName().equals("wlan0")) {
-                Log.d("TEST_BUG", " interfaceName ="+netWork.getName()+", mac="+mac);
+                Log.d("dan get_mac", " interfaceName ="+netWork.getName()+", mac="+mac);
                 address = mac;
             }*/
         }
-        //Log.v("dan address ","mac "+address);
+        //Log.v("dan get_mac","mac "+address);
         //return address;
         return null;
     }
-    /*public String get_mac_addr(){
-        Log.v("Dan get mac","enter");
-
-        try{
-            List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
-            for(NetworkInterface nif :all){
-
-                if(!nif.getName().equalsIgnoreCase("wlan0"))continue;
-                byte[] macbytes = nif.getHardwareAddress();
-                Log.v("dan get mac ","macbyte "+macbytes);
-                if(macbytes == null){
-                    Log.e("dan get mac","macbyte is null");
-                    return null;
-                }
-
-                StringBuilder mac_addr = new StringBuilder();
-                for(byte b : macbytes){
-                    mac_addr.append(String.format("%02X",b));
-                }
-                if(mac_addr.length() > 0){
-                    mac_addr.deleteCharAt(mac_addr.length() -1);
-                }
-                Log.v("get_mac_addr",mac_addr.toString());
-                return mac_addr.toString();
-            }
-        }
-        catch(Exception e){
-            Log.e("dan get mac addr","error "+e);
-        }
-        Log.v("Dan get mac","return null");
-        return null;
-    }*/
     /*
     def device_registration_with_retry(IP=None, addr=None):
     if IP != None:
