@@ -1,15 +1,20 @@
 package tw.org.cic.morsensor_mobile;
 
-import android.app.Activity;
+//------------------------------
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.ViewDebug;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -22,22 +27,113 @@ import com.ftdi.j2xx.D2xxManager;
 import com.ftdi.j2xx.FT_Device;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 import tw.org.cic.dataManage.DataTransform;
 import tw.org.cic.dataManage.MorSensorParameter;
 
 import static tw.org.cic.dataManage.DataTransform.bytesToHexString;
+import android.hardware.usb.UsbManager;
+import android.hardware.usb.UsbDevice;
+import android.app.PendingIntent;
 //------------------------------
 
 public class Mainservice extends Service{
 
-    private static String TAG = "Morservice---------";
+    class Httpthread extends Thread{
+
+        @Override
+        public void run(){
+            Socket socket = null;
+            try{
+                httpserversocket = new ServerSocket(port);
+                Log.v("httpthread","httpserversocket is created");
+                while (true){
+                    socket = httpserversocket.accept();
+                    Httpresponse response = new Httpresponse(socket);
+                    response.start();
+                }
+
+            }
+            catch(IOException e){
+                Log.e("httpthread","error "+e);
+            }
+        }
+
+    }
+    class Httpresponse extends Thread{
+        Socket socket;
+        Httpresponse(Socket socket){
+            this.socket = socket;
+        }
+        @Override
+        public void run(){
+            BufferedReader input;
+            PrintWriter output;
+            String request;
+            try{
+                input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                request = input.readLine();
+                output = new PrintWriter(socket.getOutputStream(),true);
+                //String res = Integer.toString(countsend);
+                JSONObject jsonobj = new JSONObject();
+                JSONArray jsonarr = new JSONArray();
+                try{
+                    jsonobj.put("humi",datasend[0]);
+                    jsonobj.put("uv",datasend[1]);
+                    jsonobj.put("alc",datasend[2]);
+                    //Log.v("httptresponsehread","the data of humi "+datasend[0]);
+                    //Log.v("httptresponsehread ","the data of uv is "+datasend[1]);
+                }
+                catch(JSONException e) {
+                    Log.e("httptresponsehread", "json error " + e);
+                }
+                output.print("HTTP/1.1 200 \r\n");
+                //output.print("Content-Type: text/plain \r\n");
+                output.print("Content-Type: application/json \r\n");
+                //output.print("Content-Length: "+res.length()+"\r\n");
+                output.print("Content-Length: "+jsonobj.toString().length()+"\r\n");
+                output.print("Access-Control-Allow-Origin: *\r\n");
+                output.print("\r\n");
+                //output.print(res+"\r\n");
+                output.print(jsonobj.toString()+"\r\n");
+                output.flush();
+                socket.close();
+                Log.v("httpresponsethread ","response ");
+
+            }
+            catch(IOException e){
+                Log.e("httptresponsehread","error "+e);
+            }
+
+
+        }
+
+    }
+
+    ServerSocket httpserversocket;
+    static int port = 8080;
+
+    private static String TAG = "MorService---usb---test";
+    private final static String ACTION = "android.hardware.usb.action.USB_STATE";
+    //final String ACTION_USB_PERMISSION = "tw.org.cic.morsensor_mobile.USB_PERMISSION";
+    //final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
     // j2xx
     public static D2xxManager ftD2xx = null;
     static FT_Device ftDev;
     int DevCount = -1;
     int currentPortIndex = -1;
     int portIndex = -1;
+    static float[] datasend = new float[3];
 
     // handler event
     final int UPDATE_TEXT_VIEW_CONTENT = 0;
@@ -120,13 +216,13 @@ public class Mainservice extends Service{
 
     static boolean bReadTheadEnable = false;
 
-    Dan dan = new Dan();
-
-
-    ImageView imgInfo;
-    //static TextView tv_humi, tv_uv, tv_alcohol;
-    //static RelativeLayout relativeBG;
-
+    BroadcastReceiver usbattach;
+    BroadcastReceiver usbdeatach;
+    BroadcastReceiver usbstate;
+    IntentFilter atfilter ;
+    IntentFilter defilter ;
+    UsbManager usbmanger;
+    PendingIntent permissionintent;
     //------------
 
 
@@ -138,34 +234,117 @@ public class Mainservice extends Service{
     @Override
     public void onCreate(){
 
+        super.onCreate();
+        Log.v(TAG,"service is on create state");
+
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        int ipAddress = wifiManager.getConnectionInfo().getIpAddress();
+        final String formatedIpAddress = String.format("%d.%d.%d.%d", (ipAddress & 0xff), (ipAddress >> 8 & 0xff),
+                (ipAddress >> 16 & 0xff), (ipAddress >> 24 & 0xff));
+        Log.v("IP ADDRESS","My IP "+formatedIpAddress);
+
+        Httpthread httpthread = new Httpthread();
+        httpthread.start();
+        /*usbstate = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if(ACTION.equals(action)){
+                    boolean connected = intent.getExtras().getBoolean("connected");
+                    if(connected){
+                        Log.v("usbstate","the state is connecting to usb device");
+                    }
+                    else{
+                        Log.v("usbstate","the state is disconnecting to usb device");
+                    }
+                }
+
+            }
+        };*/
+
+        usbattach = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                String action = intent.getAction();
+                if(UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action)){
+                    Log.v("usb-detect-test","usb connected");
+                    createDeviceList();
+                    if (DevCount > 0) {
+                        Log.v("usb-detect-test","DevCount > 0");
+                        connectFunction();
+                        setConfig(baudRate, dataBit, stopBit, parity, flowControl);
+                        checkDevceConnection();
+                    }
+                    //checkDevceConnection();
+                    else{
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.v("usb-detect-test","checkconnection thread");
+                                try{
+                                    while(DevCount<0){
+                                        checkDevceConnection();
+                                        Thread.sleep(6000);
+                                    }
+                                }
+                                catch(Exception e){
+                                    Log.v("MS on startcommand","err"+e);
+                                }
+                            }
+                        }).start();
+                    }
+                }
+                //registerReceiver(usbdeatach,defilter);
+                //unregisterReceiver(usbattach);
+            }
+        };
+        usbdeatach = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                String action = intent.getAction();
+                if(UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)){
+                    Log.v("usb-detect-test","usb unconnected");
+
+                }
+                //registerReceiver(usbattach,atfilter);
+                //unregisterReceiver(usbdeatach);
+            }
+        };
+
+        //usbmanger = (UsbManager)getSystemService(Context.USB_SERVICE);
+
+        /*IntentFilter stafilter = new IntentFilter();
+        stafilter.addAction(ACTION);
+        registerReceiver(usbstate,stafilter);*/
+
+        atfilter = new IntentFilter(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        defilter = new IntentFilter(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        registerReceiver(usbattach,atfilter);
+        registerReceiver(usbdeatach,defilter);
+        Toast.makeText(Mainservice.this, "MainService is on create", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId){
+
+        //-----------------------------------------------------------
         try {
             ftD2xx = D2xxManager.getInstance(this);
             ftD2xx.setVIDPID(1027, 515);
         } catch (D2xxManager.D2xxException e) {
             Log.e("FTDI_HT", "getInstance fail!!");
         }
-
-        super.onCreate();
-        /*
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.activity_main_view);
-        */
         mContext = this;
-        //mMainViewActivity = this;
-        /*
-        tv_humi = (TextView) this.findViewById(R.id.tv_humi);
-        tv_uv = (TextView) this.findViewById(R.id.tv_uv);
-        tv_alcohol = (TextView) this.findViewById(R.id.tv_alcohol);
-         */
+
         // init modem variables
         modemReceiveDataBytes = new int[1];
         modemReceiveDataBytes[0] = 0;
         modemDataBuffer = new byte[MODEM_BUFFER_SIZE];
         zmDataBuffer = new byte[MODEM_BUFFER_SIZE];
 
-        /* allocate buffer */
+        //allocate buffer
         writeBuffer = new byte[20];
         writeBootloaderBuffer = new byte[UI_READ_BUFFER_SIZE];
         readBuffer = new byte[UI_READ_BUFFER_SIZE];
@@ -175,10 +354,10 @@ public class Mainservice extends Service{
 
         // start main text area read thread
         //handler will be defined
-        handlerThread = new Mainservice.HandlerThread(handler);
+        handlerThread = new HandlerThread();
         handlerThread.start();
 
-//		/* setup the baud rate list*/
+//		// setup the baud rate list
         baudRate = 115200;
         stopBit = 1;
         dataBit = 8;
@@ -186,11 +365,49 @@ public class Mainservice extends Service{
         flowControl = 0;
         portIndex = 0;
 
+        Toast.makeText(mContext, "Service on start command----------", Toast.LENGTH_SHORT).show();
+        DLog.d(TAG, "onStartCommand----------");
+        return START_STICKY;
+    }
+
+    @Override
+    public void onDestroy(){
+        Log.d(TAG, "--- onDestroy ---");
+        Toast.makeText(Mainservice.this, "MainService is  destroyed", Toast.LENGTH_SHORT).show();
+        disconnectFunction();
+        unregisterReceiver(usbattach);
+        unregisterReceiver(usbdeatach);
+        try{
+            httpserversocket.close();
+        }
+        catch (IOException e){
+            Log.e("http on destroy ","error "+e);
+        }
+        super.onDestroy();
+    }
+
+    public static void sendCommand(int sendCommand) {
+        try {
+            switch (sendCommand) {
+                case MorSensorParameter.SEND_MORSENSOR_BLE_SENSOR_DATA_ALL:
+                    writeBuffer[0] = (byte) 0xF3;
+                    writeBuffer[1] = (byte) 0x00;
+                    break;
+            }
+            sendData(writeBuffer.length, writeBuffer);
+            requestSensorData = true;
+
+        } catch (IllegalArgumentException e) {
+            // midToast("Incorrect input for HEX format."
+            // + "\nAllowed charater: 0~9, a~f and A~F", Toast.LENGTH_SHORT);
+            Toast.makeText(mContext, "Incorrect input for HEX format.", Toast.LENGTH_LONG).show();
+            DLog.e(TAG, "Illeagal HEX input.");
+        }
     }
 
     private void checkDevceConnection() {
         if (null == ftDev || false == ftDev.isOpen()) {
-            DLog.e(TAG, "checkDeviceConnection first sentence - reconnect - null");
+            DLog.e(TAG, "checkDeviceConnection first sentence - reconnect ------------ null");
             requestSensorData = false;
             if (ftDev != null)
                 DLog.e(TAG, "checkDeviceConnection - reconnect:" + ftDev.isOpen());
@@ -229,89 +446,6 @@ public class Mainservice extends Service{
         }
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId){
-
-        DLog.d(TAG, "onStartCommand");
-
-        createDeviceList();
-        if (DevCount > 0) {
-            connectFunction();
-            setConfig(baudRate, dataBit, stopBit, parity, flowControl);
-        }
-        else{
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try{
-                        while(DevCount<0){
-                            checkDevceConnection();
-                            Thread.sleep(2500);
-                        }
-
-                    }
-                    catch(Exception e){
-                        Log.v("MS on startcommand","err"+e);
-                    }
-
-
-                }
-            }).start();
-        }
-
-        //Toast.makeText(mContext, "Service is startoncommand!", Toast.LENGTH_LONG).show();
-        Log.v(TAG,"Service is startoncommand");
-        return START_NOT_STICKY;
-    }
-    /*
-    protected void onResume() {
-        super.onResume();
-        DLog.d(TAG, "onResume");
-        DLog.e(TAG, "onResume - reconnect");
-        checkDevceConnection();
-    }
-    */
-    //check should stopservice exist
-
-    @Override
-    public void onDestroy(){
-        Log.d(TAG, "--- onDestroy ---");
-        disconnectFunction();
-        super.onDestroy();
-    }
-
-    public static void sendCommand(int sendCommand) {
-        try {
-            switch (sendCommand) {
-                case MorSensorParameter.SEND_MORSENSOR_BLE_SENSOR_DATA_ALL:
-                    writeBuffer[0] = (byte) 0xF3;
-                    writeBuffer[1] = (byte) 0x00;
-                    break;
-            }
-
-            sendData(writeBuffer.length, writeBuffer);
-            requestSensorData = true;
-
-        } catch (IllegalArgumentException e) {
-            // midToast("Incorrect input for HEX format."
-            // + "\nAllowed charater: 0~9, a~f and A~F", Toast.LENGTH_SHORT);
-            Toast.makeText(mContext, "Incorrect input for HEX format.", Toast.LENGTH_LONG).show();
-            DLog.e(TAG, "Illeagal HEX input.");
-        }
-    }
-
-    /*
-    // call this API to show message
-    static void midToast(String str, int showTime) {
-        Toast toast = Toast.makeText(mContext, str, showTime);
-        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 0);
-
-        //not sure if it will be displayed
-        TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
-        toast.show();
-    }
-    */
-
     //-----------------
     // j2xx functions +
     public void createDeviceList() {
@@ -319,14 +453,18 @@ public class Mainservice extends Service{
         int tempDevCount = ftD2xx.createDeviceInfoList(mContext);
 
         if (tempDevCount > 0) {
+            Log.v("CDL function","tempDevCount > 0 ");
             if (DevCount != tempDevCount) {
                 DevCount = tempDevCount;
+                Log.v("CDL function","DevCount != tempDevCount ");
             }
         } else {
+            Log.v("CDL function","tempDevCount < 0 ");
             DevCount = -1;
             currentPortIndex = -1;
         }
         Log.d(TAG, "createDeviceList  DevCount:" + DevCount + "  currentPortIndex:" + currentPortIndex);
+        //Toast.makeText(mContext, "createDeviceList  DevCount:" + DevCount + "  currentPortIndex:" + currentPortIndex, Toast.LENGTH_SHORT).show();
     }
 
     public void disconnectFunction() {
@@ -392,7 +530,7 @@ public class Mainservice extends Service{
 
             if (!bReadTheadEnable) {
 
-                readThread = new ReadThread(handler);
+                readThread = new ReadThread();
                 readThread.start();
             }
         } else {
@@ -489,8 +627,7 @@ public class Mainservice extends Service{
                     Toast.makeText(mContext, "Device not open!", Toast.LENGTH_SHORT).show();
                 }
             });*/
-
-            Toast.makeText(mContext, "Device not open!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "Device not open!", Toast.LENGTH_LONG).show();
 
             return;
         }
@@ -503,6 +640,10 @@ public class Mainservice extends Service{
             }
 
             DLog.e(TAG, "sendData:" + bytesToHexString(buffer));
+        }
+        else{
+            Log.e("sendData: ","numByte <=0");
+
         }
 
     }
@@ -538,63 +679,12 @@ public class Mainservice extends Service{
 
     static boolean requestSensorData = false;
 
-    final Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            Log.v("Mainservice","handlemessage");
-            switch (msg.what) {
-                case UPDATE_TEXT_VIEW_CONTENT: //USB Receive Data
-                    int rawDataLength = actualNumBytes;
-                    Log.d(TAG, "UPDATE_TEXT_VIEW_CONTENT readBuffer:" + readBuffer.length + " actualNumBytes:" + actualNumBytes + " totalUpdateDataBytes:" + totalUpdateDataBytes);
-                    if (actualNumBytes > 0) {
-
-                        String data = bytesToHexString(readBuffer).substring(0, rawDataLength * 2);
-                        Log.e(TAG, "UPDATE_TEXT_VIEW_CONTENT_120:" + data);
-                        totalUpdateDataBytes += actualNumBytes;
-                        for (int i = 0; i < actualNumBytes; i++) {
-                            readBufferToChar[i] = (char) readBuffer[i];
-                        }
-
-                        switch (readBuffer[0]) {
-                            case MorSensorParameter.IN_BLE_SENSOR_DATA:
-                                if(readBuffer[1] != 0) {
-                                    DataTransform.TransformTempHumi(readBuffer);
-                                    DataTransform.TransformUV(readBuffer);
-                                    DataTransform.TransformAlcohol(readBuffer);
-
-                                    displaySensorData();
-                                }
-                                break;
-                        }
-                    }
-                    break;
-                default:
-                    //midToast("NG CASE", Toast.LENGTH_LONG);
-                    Toast.makeText(mContext, "NG CASE", Toast.LENGTH_SHORT).show();
-                    break;
-            }
-        }
-    };
-
-
     // Update UI content
     class HandlerThread extends Thread {
-        Handler mHandler;
-
-        HandlerThread(Handler h) {
-            mHandler = h;
-        }
 
         public void run() {
             byte status;
-            Message msg;
-            dan.init();
-            try{
-                dan.device_registration_with_retry(null);
-                Log.d("mainservice ","register success");
-            }
-            catch(InterruptedException e){
-                Log.e("mainservice ","register failed "+e);
-            }
+            //Message msg;
             while (true) {
                 try {
                     Thread.sleep(100);
@@ -609,8 +699,29 @@ public class Mainservice extends Service{
                     status = readData(UI_READ_BUFFER_SIZE, readBuffer);
 
                     if (0x00 == status) {
-                        msg = mHandler.obtainMessage(UPDATE_TEXT_VIEW_CONTENT);
-                        mHandler.sendMessage(msg);
+                        //msg = mHandler.obtainMessage(UPDATE_TEXT_VIEW_CONTENT);
+                        //mHandler.sendMessage(msg);
+                        int rawDataLength = actualNumBytes;
+                        Log.d(TAG, "UPDATE_TEXT_VIEW_CONTENT readBuffer:" + readBuffer.length + " actualNumBytes:" + actualNumBytes + " totalUpdateDataBytes:" + totalUpdateDataBytes);
+                        if (actualNumBytes > 0) {
+
+                            String data = bytesToHexString(readBuffer).substring(0, rawDataLength * 2);
+                            Log.e(TAG, "UPDATE_TEXT_VIEW_CONTENT_120:" + data);
+                            totalUpdateDataBytes += actualNumBytes;
+                            for (int i = 0; i < actualNumBytes; i++) {
+                                readBufferToChar[i] = (char) readBuffer[i];
+                            }
+                            switch (readBuffer[0]) {
+                                case MorSensorParameter.IN_BLE_SENSOR_DATA:
+                                    if(readBuffer[1] != 0) {
+                                        DataTransform.TransformTempHumi(readBuffer);
+                                        DataTransform.TransformUV(readBuffer);
+                                        DataTransform.TransformAlcohol(readBuffer);
+                                        displaySensorData();
+                                    }
+                                    break;
+                            }
+                        }
                     }
                 }
             }
@@ -622,15 +733,12 @@ public class Mainservice extends Service{
 
         int index=0;
 
-        Handler mHandler;
-
-        ReadThread(Handler h) {
-            mHandler = h;
+        ReadThread() {
             this.setPriority(MAX_PRIORITY);
         }
 
         public void run() {
-            Log.d(TAG, "ReadThread");
+            Log.d(TAG, "~~~~~~~~~~~~~~~~~~ReadThread~~~~~~~~~~~~~~~~~~");
             byte[] usbdata = new byte[USB_DATA_BUFFER];
             int readcount = 0;
             int iWriteIndex = 0;
@@ -650,17 +758,9 @@ public class Mainservice extends Service{
                         e.printStackTrace();
                     }
                 }
-
-                //------------
-                if(ftDev==null){
-                    Log.v("readthread","ftdev is null");
-                }
-                if(null==ftDev){
-                    Log.v("readthreadnull","ftdev is null");
-                }
-                //------------
                 readcount = ftDev.getQueueStatus();
                 //Log.e(">>@@","iavailable:" + iavailable);
+
                 if (readcount > 0) {
                     Log.d(TAG, "readcount:" + readcount);
                     if (readcount > USB_DATA_BUFFER) {
@@ -721,6 +821,10 @@ public class Mainservice extends Service{
                         }
                     }
                 }
+                else{
+                    if(readcount<0)
+                        Log.v("readthread====","readcount= "+readcount);
+                }
             }
             DLog.e(TAG, "read thread terminate...");
         }
@@ -728,48 +832,24 @@ public class Mainservice extends Service{
 
 
     public void displaySensorData() {
-
         float[] data = DataTransform.getData();
         Log.i(TAG, "Humi:" + data[1] + " UV:" + data[2] + " Alcohol:" + data[3]);
         MorSensorParameter.humi_data = (int) data[1];
         MorSensorParameter.uv_data = ((int) (data[2] * 100) / 100f);
         MorSensorParameter.alcohol_data = ((int) (data[3] * 1000) / 1000f);
-        new Thread(new Runnable(){
-            JSONArray humi = new JSONArray();
-            JSONArray uv = new JSONArray();
-            JSONArray alc = new JSONArray();
-            JSONArray humi_o = new JSONArray();
-            JSONArray uv_o = new JSONArray();
-            JSONArray alc_o = new JSONArray();
-            @Override
-            public void run(){
-                try{
-                    humi.put(MorSensorParameter.humi_data);
-                    uv.put(MorSensorParameter.uv_data);
-                    alc.put(MorSensorParameter.alcohol_data);
-                    dan.push("mobile_humi",humi);
-                    dan.push("mobile_uv",uv);
-                    dan.push("mobile_alc",alc);
+        int scale = 5;
+        int roundingmode = 4;
+        //BigDecimal bdhumi = new BigDecimal((double)MorSensorParameter.humi_data);
+        BigDecimal bduv = new BigDecimal((double)MorSensorParameter.uv_data);
+        BigDecimal bdalc = new BigDecimal((double)MorSensorParameter.alcohol_data);
+        bduv = bduv.setScale(scale,roundingmode);
+        bdalc = bdalc.setScale(scale,roundingmode);
 
-                    humi_o = dan.pull("mobile_humi_o");
-                    uv_o = dan.pull("mobile_uv_o");
-                    alc_o = dan.pull("mobile_alc_o");
-
-                    if(humi_o!=null){
-                        Log.v("mainservice display ","humi is "+humi_o);
-                    }
-
-                }
-                catch(Exception e){
-                    Log.e("mainservice display ","error cuz "+e);
-                }
-            }
-        }).start();
-        //tv_humi.setText("Humidity: " + MorSensorParameter.humi_data);
-        //tv_uv.setText("UV: " + MorSensorParameter.uv_data);
-        //tv_alcohol.setText("Alcohol: " + MorSensorParameter.alcohol_data);//((int) (data[3] * 1000) / 1000f) + "\n" + ((int) (data[4] * 1000) / 1000f)
+        datasend[0] = MorSensorParameter.humi_data;
+        datasend[1] = bduv.floatValue();
+        datasend[2] = bdalc.floatValue();
+        Log.v("datasend ","datasend is "+datasend[1]);
         Log.i(TAG, "Humi:" + data[1] + " UV:" + data[2] + " Alcohol:" + data[3]);
-
     }
 
 }
