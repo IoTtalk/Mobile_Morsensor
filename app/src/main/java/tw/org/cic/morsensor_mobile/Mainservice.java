@@ -1,6 +1,6 @@
 package tw.org.cic.morsensor_mobile;
 
-//------------------------------
+import android.app.Activity;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
@@ -87,27 +87,35 @@ public class Mainservice extends Service{
                 //String res = Integer.toString(countsend);
                 JSONObject jsonobj = new JSONObject();
                 JSONArray jsonarr = new JSONArray();
-                try{
-                    jsonobj.put("humi",datasend[0]);
-                    jsonobj.put("uv",datasend[1]);
-                    jsonobj.put("alc",datasend[2]);
-                    //Log.v("httptresponsehread","the data of humi "+datasend[0]);
-                    //Log.v("httptresponsehread ","the data of uv is "+datasend[1]);
+                if(datasend[0]>=0||datasend[1]>=0||datasend[2]>=0){
+                    try{
+                        jsonobj.put("humi",datasend[0]);
+                        jsonobj.put("uv",datasend[1]);
+                        jsonobj.put("alc",datasend[2]);
+                        //Log.v("httptresponsehread","the data of humi "+datasend[0]);
+                        //Log.v("httptresponsehread ","the data of uv is "+datasend[1]);
+                    }
+                    catch(JSONException e) {
+                        Log.e("httptresponsehread", "json error " + e);
+                    }
+                    output.print("HTTP/1.1 200 \r\n");
+                    //output.print("Content-Type: text/plain \r\n");
+                    output.print("Content-Type: application/json \r\n");
+                    //output.print("Content-Length: "+res.length()+"\r\n");
+                    output.print("Content-Length: "+jsonobj.toString().length()+"\r\n");
+                    output.print("Access-Control-Allow-Origin: *\r\n");
+                    output.print("\r\n");
+                    //output.print(res+"\r\n");
+                    output.print(jsonobj.toString()+"\r\n");
+                    output.flush();
+                    socket.close();
                 }
-                catch(JSONException e) {
-                    Log.e("httptresponsehread", "json error " + e);
+                else{
+                    output.print("HTTP/1.1 404 \r\n");
+                    output.flush();
+                    socket.close();
                 }
-                output.print("HTTP/1.1 200 \r\n");
-                //output.print("Content-Type: text/plain \r\n");
-                output.print("Content-Type: application/json \r\n");
-                //output.print("Content-Length: "+res.length()+"\r\n");
-                output.print("Content-Length: "+jsonobj.toString().length()+"\r\n");
-                output.print("Access-Control-Allow-Origin: *\r\n");
-                output.print("\r\n");
-                //output.print(res+"\r\n");
-                output.print(jsonobj.toString()+"\r\n");
-                output.flush();
-                socket.close();
+
                 Log.v("httpresponsethread ","response ");
 
             }
@@ -245,22 +253,6 @@ public class Mainservice extends Service{
 
         Httpthread httpthread = new Httpthread();
         httpthread.start();
-        /*usbstate = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String action = intent.getAction();
-                if(ACTION.equals(action)){
-                    boolean connected = intent.getExtras().getBoolean("connected");
-                    if(connected){
-                        Log.v("usbstate","the state is connecting to usb device");
-                    }
-                    else{
-                        Log.v("usbstate","the state is disconnecting to usb device");
-                    }
-                }
-
-            }
-        };*/
 
         usbattach = new BroadcastReceiver() {
             @Override
@@ -285,7 +277,7 @@ public class Mainservice extends Service{
                                 try{
                                     while(DevCount<0){
                                         checkDevceConnection();
-                                        Thread.sleep(6000);
+                                        Thread.sleep(10000);
                                     }
                                 }
                                 catch(Exception e){
@@ -306,6 +298,9 @@ public class Mainservice extends Service{
                 String action = intent.getAction();
                 if(UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action)){
                     Log.v("usb-detect-test","usb unconnected");
+                    datasend[0] = -1;
+                    datasend[1] = -1;
+                    datasend[2] = -1;
 
                 }
                 //registerReceiver(usbattach,atfilter);
@@ -365,8 +360,15 @@ public class Mainservice extends Service{
         flowControl = 0;
         portIndex = 0;
 
+        datasend[0] = -1;
+        datasend[1] = -1;
+        datasend[2] = -1;
+
+        checkDevceConnection();
+
         Toast.makeText(mContext, "Service on start command----------", Toast.LENGTH_SHORT).show();
         DLog.d(TAG, "onStartCommand----------");
+
         return START_STICKY;
     }
 
@@ -719,10 +721,17 @@ public class Mainservice extends Service{
                                         DataTransform.TransformAlcohol(readBuffer);
                                         displaySensorData();
                                     }
+                                    /*else{
+                                        datasend[0]=-1;
+                                        datasend[1]=-1;
+                                        datasend[2]=-1;
+                                    }*/
                                     break;
                             }
                         }
+
                     }
+
                 }
             }
         }
@@ -822,8 +831,12 @@ public class Mainservice extends Service{
                     }
                 }
                 else{
-                    if(readcount<0)
-                        Log.v("readthread====","readcount= "+readcount);
+                    if(readcount<0) {
+                        //Log.v("readthread====","readcount= "+readcount);
+                        datasend[0] = -1;
+                        datasend[1] = -1;
+                        datasend[2] = -1;
+                    }
                 }
             }
             DLog.e(TAG, "read thread terminate...");

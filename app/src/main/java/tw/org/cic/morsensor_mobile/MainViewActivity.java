@@ -46,7 +46,7 @@ public class MainViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         Log.v("MainActivity", "into");
 
-        setContentView(R.layout.activity_main_view);
+        //setContentView(R.layout.activity_main_view);
 
         Intent intent = new Intent(MainViewActivity.this, Mainservice.class);
         startService(intent);
