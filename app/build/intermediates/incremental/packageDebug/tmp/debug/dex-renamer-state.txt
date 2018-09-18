@@ -1,4 +1,4 @@
-#Wed Jun 06 19:43:31 CST 2018
+#Mon Sep 17 12:52:36 CST 2018
 path.3=classes.dex
 path.2=classes.dex
 path.1=classes.dex
@@ -7,7 +7,7 @@ renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-base.3=/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/transforms/dexMerger/debug/12
-base.2=/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/transforms/dexMerger/debug/14
-base.1=/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/transforms/dexMerger/debug/11
-base.0=/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/transforms/dexMerger/debug/13
+base.3=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\13
+base.2=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\11
+base.1=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\14
+base.0=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\12
