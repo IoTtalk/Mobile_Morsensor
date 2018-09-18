@@ -68,6 +68,7 @@
 
 
         <service android:name=".Mainservice"/>
+        <service android:name=".TrackingService"/>
 
     </application>
 

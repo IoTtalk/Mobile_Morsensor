@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="264dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/name"
@@ -16,8 +19,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:text="Name"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
             android:id="@+id/inputName"
@@ -33,49 +35,75 @@
             android:id="@+id/trackingTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:text="Time"
-            android:layout_below="@+id/name"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Spinner
             android:id="@+id/timeSelector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/inputName"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
-            android:layout_toRightOf="@+id/trackingTime"
-            android:layout_below="@+id/inputName"
-            />
+            android:layout_toRightOf="@+id/trackingTime" />
 
         <TextView
             android:id="@+id/mins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/inputName"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
-            android:text="mins"
             android:layout_toRightOf="@+id/timeSelector"
-            android:layout_below="@+id/inputName"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+            android:text="mins"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
-            android:id="@+id/enter"
+            android:id="@+id/trackStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="32dp"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/mins"
-            android:text="Enter"
-            android:textAllCaps="false"
-            />
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Start"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/trackStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/trackStart"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Stop"
+            android:textAllCaps="false" />
+
+        <TextView
+            android:id="@+id/tv_lng"
+            android:layout_width="222dp"
+            android:layout_height="23dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="80dp"
+            android:text="Lng"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="312dp" />
+
+        <TextView
+            android:id="@+id/tv_lat"
+            android:layout_width="222dp"
+            android:layout_height="23dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="46dp"
+            android:text="Lat"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="342dp" />
+
     </RelativeLayout>
-
-
 
 </android.support.constraint.ConstraintLayout>

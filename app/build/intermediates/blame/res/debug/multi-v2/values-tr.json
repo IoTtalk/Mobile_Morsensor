@@ -4,6 +4,23 @@
             "outputFile": "C:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-tr\\values-tr.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\dcb1767dca7f6ef71184de852158d6ed\\res\\values-tr\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,353,540,674,777,983,1111,1264,1395,1626,1731,1919,2051,2255,2448,2536,2626",
+                        "endColumns": "107,186,133,102,205,127,152,130,230,104,187,131,203,192,87,89,104",
+                        "endOffsets": "352,539,673,776,982,1110,1263,1394,1625,1730,1918,2050,2254,2447,2535,2625,2730"
+                    },
+                    "to": {
+                        "startLines": "15,16,17,18,19,20,21,22,24,25,26,27,28,29,30,31,32",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1481,1593,1780,1918,2025,2231,2363,2520,2861,3092,3201,3389,3525,3729,3926,4018,4112",
+                        "endColumns": "111,186,137,106,205,131,156,134,230,108,187,135,203,196,91,93,108",
+                        "endOffsets": "1588,1775,1913,2020,2226,2358,2515,2650,3087,3196,3384,3520,3724,3921,4013,4107,4216"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-22.2.0.aar\\27fa14f0bab73bacc58924b7bf6f68de\\res\\values-tr\\values-tr.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16",
@@ -15,9 +32,43 @@
                     "to": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,259,371,461,567,687,794,899,995,1102,1204,1312",
+                        "startOffsets": "105,210,309,421,511,617,737,844,949,1045,1152,1254,1362",
                         "endColumns": "104,98,111,89,105,119,106,104,95,106,101,107,118",
-                        "endOffsets": "155,254,366,456,562,682,789,894,990,1097,1199,1307,1426"
+                        "endOffsets": "205,304,416,506,612,732,839,944,1040,1147,1249,1357,1476"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\9ffdf35c6557839902a97c55ab6ec671\\res\\values-tr\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "205",
+                        "endOffsets": "452"
+                    },
+                    "to": {
+                        "startLines": "23",
+                        "startColumns": "4",
+                        "startOffsets": "2655",
+                        "endColumns": "205",
+                        "endOffsets": "2856"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\07cd976a1be1ed44ecaeff7196d7db40\\res\\values-tr\\values-tr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "33",
+                        "startColumns": "4",
+                        "startOffsets": "4221",
+                        "endColumns": "100",
+                        "endOffsets": "4317"
                     }
                 }
             ]

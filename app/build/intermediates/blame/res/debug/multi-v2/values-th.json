@@ -15,9 +15,60 @@
                     "to": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,258,366,455,557,667,775,879,977,1085,1190,1291",
+                        "startOffsets": "105,210,308,416,505,607,717,825,929,1027,1135,1240,1341",
                         "endColumns": "104,97,107,88,101,109,107,103,97,107,104,100,115",
-                        "endOffsets": "155,253,361,450,552,662,770,874,972,1080,1185,1286,1402"
+                        "endOffsets": "205,303,411,500,602,712,820,924,1022,1130,1235,1336,1452"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\9ffdf35c6557839902a97c55ab6ec671\\res\\values-th\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "187",
+                        "endOffsets": "434"
+                    },
+                    "to": {
+                        "startLines": "23",
+                        "startColumns": "4",
+                        "startOffsets": "2585",
+                        "endColumns": "187",
+                        "endOffsets": "2768"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\dcb1767dca7f6ef71184de852158d6ed\\res\\values-th\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,349,528,649,754,949,1071,1216,1349,1552,1655,1833,1953,2152,2329,2419,2513",
+                        "endColumns": "103,178,120,104,194,121,144,132,202,102,177,119,198,176,89,93,108",
+                        "endOffsets": "348,527,648,753,948,1070,1215,1348,1551,1654,1832,1952,2151,2328,2418,2512,2621"
+                    },
+                    "to": {
+                        "startLines": "15,16,17,18,19,20,21,22,24,25,26,27,28,29,30,31,32",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1457,1565,1744,1869,1978,2173,2299,2448,2773,2976,3083,3261,3385,3584,3765,3859,3957",
+                        "endColumns": "107,178,124,108,194,125,148,136,202,106,177,123,198,180,93,97,112",
+                        "endOffsets": "1560,1739,1864,1973,2168,2294,2443,2580,2971,3078,3256,3380,3579,3760,3854,3952,4065"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\07cd976a1be1ed44ecaeff7196d7db40\\res\\values-th\\values-th.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "33",
+                        "startColumns": "4",
+                        "startOffsets": "4070",
+                        "endColumns": "100",
+                        "endOffsets": "4166"
                     }
                 }
             ]

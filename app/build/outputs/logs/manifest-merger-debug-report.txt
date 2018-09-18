@@ -1,21 +1,27 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-74:12
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-75:12
 MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:17:1-31:12
+MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\1c5ae40cad6a36f3add38e60e70f0e68\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-15.0.1.aar\86b0f9717f4eb7778ecf3ec6f4533529\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\971faa0d49e8627bb2c04d1bf4db7048\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\9ffdf35c6557839902a97c55ab6ec671\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-25.3.1.aar\e43479716f4790cb5890255e6ea2c340\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.3.1.aar\b62066979d348b5f3245f34f08d8942e\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.3.1.aar\3959e4eb7c6e0bb74fc35665a673fc42\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.3.1.aar\64c21d9c3c484e86f0a34df6ef080977\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-25.3.1.aar\d1988e590228d82f1dcc4181bb93b381\AndroidManifest.xml:17:1-31:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-74:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-74:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:17:1-30:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-75:12
 	package
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:3:5-42
 		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
@@ -81,25 +87,37 @@ ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\Android
 	android:name
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:22:19-59
 application
-ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:24:5-72:19
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:24:5-73:19
 MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:29:5-20
+MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\1c5ae40cad6a36f3add38e60e70f0e68\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\1c5ae40cad6a36f3add38e60e70f0e68\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-15.0.1.aar\86b0f9717f4eb7778ecf3ec6f4533529\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-15.0.1.aar\86b0f9717f4eb7778ecf3ec6f4533529\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\971faa0d49e8627bb2c04d1bf4db7048\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\971faa0d49e8627bb2c04d1bf4db7048\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\9ffdf35c6557839902a97c55ab6ec671\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\9ffdf35c6557839902a97c55ab6ec671\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-25.3.1.aar\e43479716f4790cb5890255e6ea2c340\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-25.3.1.aar\e43479716f4790cb5890255e6ea2c340\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.3.1.aar\b62066979d348b5f3245f34f08d8942e\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.3.1.aar\b62066979d348b5f3245f34f08d8942e\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.3.1.aar\3959e4eb7c6e0bb74fc35665a673fc42\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.3.1.aar\3959e4eb7c6e0bb74fc35665a673fc42\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.3.1.aar\64c21d9c3c484e86f0a34df6ef080977\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.3.1.aar\64c21d9c3c484e86f0a34df6ef080977\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-25.3.1.aar\d1988e590228d82f1dcc4181bb93b381\AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-25.3.1.aar\d1988e590228d82f1dcc4181bb93b381\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:24:5-28:19
 	android:label
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:28:9-41
 	android:hardwareAccelerated
@@ -168,6 +186,10 @@ service#tw.org.cic.morsensor_mobile.Mainservice
 ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:70:9-47
 	android:name
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:70:18-45
+service#tw.org.cic.morsensor_mobile.TrackingService
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:71:9-51
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:71:18-49
 uses-sdk
 INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
@@ -176,24 +198,36 @@ MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\tr
 MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:21:5-23:54
+MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\1c5ae40cad6a36f3add38e60e70f0e68\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-15.0.1.aar\1c5ae40cad6a36f3add38e60e70f0e68\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-15.0.1.aar\86b0f9717f4eb7778ecf3ec6f4533529\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-15.0.1.aar\86b0f9717f4eb7778ecf3ec6f4533529\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\971faa0d49e8627bb2c04d1bf4db7048\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\971faa0d49e8627bb2c04d1bf4db7048\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\9ffdf35c6557839902a97c55ab6ec671\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\9ffdf35c6557839902a97c55ab6ec671\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:21:5-23:54
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-25.3.1.aar\e43479716f4790cb5890255e6ea2c340\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-25.3.1.aar\e43479716f4790cb5890255e6ea2c340\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.3.1.aar\b62066979d348b5f3245f34f08d8942e\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.3.1.aar\b62066979d348b5f3245f34f08d8942e\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.3.1.aar\3959e4eb7c6e0bb74fc35665a673fc42\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.3.1.aar\3959e4eb7c6e0bb74fc35665a673fc42\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.3.1.aar\64c21d9c3c484e86f0a34df6ef080977\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.3.1.aar\64c21d9c3c484e86f0a34df6ef080977\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-25.3.1.aar\d1988e590228d82f1dcc4181bb93b381\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-25.3.1.aar\d1988e590228d82f1dcc4181bb93b381\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:20:5-22:41
 INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:23:9-51
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:23:9-51
 	android:targetSdkVersion
 		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
@@ -202,19 +236,39 @@ INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\Andr
 		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
-meta-data#android.support.VERSION
-ADDED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-25.3.1.aar\e43479716f4790cb5890255e6ea2c340\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-25.3.1.aar\e43479716f4790cb5890255e6ea2c340\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.3.1.aar\b62066979d348b5f3245f34f08d8942e\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-25.3.1.aar\b62066979d348b5f3245f34f08d8942e\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.3.1.aar\3959e4eb7c6e0bb74fc35665a673fc42\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.3.1.aar\3959e4eb7c6e0bb74fc35665a673fc42\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.3.1.aar\64c21d9c3c484e86f0a34df6ef080977\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.3.1.aar\64c21d9c3c484e86f0a34df6ef080977\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-25.3.1.aar\d1988e590228d82f1dcc4181bb93b381\AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-25.3.1.aar\d1988e590228d82f1dcc4181bb93b381\AndroidManifest.xml:25:5-27:34
-	android:value
-		ADDED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:27:9-31
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:26:13-72
 	android:name
-		ADDED from [com.android.support:support-v4:25.3.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-25.3.1.aar\f765a5039ac57a3b90ee2f4dde88232d\AndroidManifest.xml:26:9-47
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\dcb1767dca7f6ef71184de852158d6ed\AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\9ffdf35c6557839902a97c55ab6ec671\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\9ffdf35c6557839902a97c55ab6ec671\AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\9ffdf35c6557839902a97c55ab6ec671\AndroidManifest.xml:24:13-58
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:26:13-58

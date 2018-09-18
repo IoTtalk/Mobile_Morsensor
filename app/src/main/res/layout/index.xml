@@ -13,14 +13,13 @@
         android:id="@+id/MorSensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MorSensor"
-        android:onClick="enterToMainViewActivity" />
+        android:text="MorSensor" />
 
     <Button
+        android:id="@+id/Tracking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tracking"
-        android:onClick="enterToTrackingMainViewActivity"
         android:layout_below="@+id/MorSensor" />
 
     </RelativeLayout>
