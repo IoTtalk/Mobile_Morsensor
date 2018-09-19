@@ -1,6 +1,9 @@
 package tw.org.cic.morsensor_mobile;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +12,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -20,11 +24,42 @@ public class TrackingService extends Service {
 
     private LocationListener listener;
     private LocationManager locationManager;
+    private NotificationManager notificationManager;
+    private NotificationChannel channelLove;
+    private String ANDROID_CHANNEL_ID = "1";
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("test")
+                    .setAutoCancel(true);
+
+            Notification notification = builder.build();
+            startForeground(1, notification);
+
+
+        } else {
+
+            Notification.Builder builder = new Notification.Builder(this)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("test")
+                    .setPriority(Notification.PRIORITY_DEFAULT)
+                    .setAutoCancel(true);
+
+            Notification notification = builder.build();
+
+            startForeground(1, notification);
+        }
+        return START_NOT_STICKY;
     }
 
     @Override
@@ -36,9 +71,9 @@ public class TrackingService extends Service {
             @Override
             public void onLocationChanged(Location location) {
                 Intent i = new Intent("location_update");
-                i.putExtra("coordinates", location.getLongitude() + " " + location.getLongitude());
+                i.putExtra("coordinates", location.getLatitude() + " " + location.getLongitude());
                 sendBroadcast(i);
-                Log.v("onchange", Double.toString(location.getLatitude()));
+                Log.v("onchange", Double.toString(location.getLatitude())+" "+Double.toString(location.getLongitude()));
             }
 
             @Override
@@ -71,7 +106,16 @@ public class TrackingService extends Service {
             return;
         }
 //        locationManager.getBestProvider(new Criteria(), true)
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 0, listener);
+        Log.v("locationManager", String.valueOf(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)));
+        Log.v("locationManager", String.valueOf(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)));
+        if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
+        } else if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
+        }
+        /*Log.v("GPS_PROVIDER", String.valueOf(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)));
+        Log.v("NETWORK_PROVIDER", String.valueOf(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)));
+        locationManager.requestLocationUpdates(locationManager.getBestProvider(new Criteria(), true), 0, 0, listener);*/
 //        locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         Log.v("locationManager", String.valueOf(locationManager));
     }
@@ -81,6 +125,7 @@ public class TrackingService extends Service {
         super.onDestroy();
         if(locationManager != null) {
             locationManager.removeUpdates(listener);
+            Log.v("onDestroy", "onDestroy");
         }
     }
 }

@@ -21,7 +21,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class TrackingMainViewActivity extends Activity /*implements LocationListener*/ {
@@ -34,11 +37,36 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     Looper mLocationHandlerLooper = null;
     private BroadcastReceiver broadcastReceiver;
 
+    private Spinner spnTimeSelector;
+    String[] Mins = new String[] {"10", "20", "30", "40", "50", "60", "Unlimited"};
+    private Spinner.OnItemSelectedListener spnTimeSelectorListener;
+    String sel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking_main_view);
 
+        spnTimeSelector = (Spinner) findViewById(R.id.timeSelector);
+        ArrayAdapter<String> adapterMins = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Mins);
+        adapterMins.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnTimeSelector.setAdapter(adapterMins);
+
+
+        spnTimeSelectorListener = new Spinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sel = parent.getSelectedItem().toString();
+                Log.v("spnTimeSelectorListener", sel);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                sel = Mins[0];
+                Log.v("onNothingSelected", sel);
+            }
+        };
+        spnTimeSelector.setOnItemSelectedListener(spnTimeSelectorListener);
 //        Intent intent = new Intent(this, TrackingService.class);
 //        this.startService(intent);
         Log.v("MainActivity", "into");
@@ -101,7 +129,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             broadcastReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    Log.v("onchange", intent.getExtras().get("coordinates").toString());
+                    Log.v("onReceive", intent.getExtras().get("coordinates").toString());
                     ((TextView)findViewById(R.id.tv_lng)).setText(intent.getExtras().get("coordinates").toString());
 //                    ((TextView)findViewById(R.id.tv_lat)).setText(Double.toString(location.getLatitude()));
                 }
@@ -125,7 +153,12 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(getApplicationContext(), TrackingService.class);
-                        startService(i);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            startForegroundService(i);
+                        } else {
+                            startService(i);
+                        }
+//                        startService(i);
                     }
                 }
         );
@@ -164,63 +197,4 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         }
     }
 
-   /* @Override
-    protected void onResume() {
-        super.onResume();
-
-        mLocationHandlerThread.start();
-        mLocationHandlerLooper = mLocationHandlerThread.getLooper();
-
-        try {
-            Log.v("onchange", "Try resume");
-            this.locationMgr.requestLocationUpdates(this.prov, 500, 0, this, mLocationHandlerLooper);
-        }
-        catch(SecurityException e){
-            // The app doesn't have the correct permissions
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        try{
-            Log.v("onpause", "onPause in");
-            this.locationMgr.removeUpdates(this);
-        }
-        catch (SecurityException e){
-            // The app doesn't have the correct permissions
-        }
-
-        mLocationHandlerLooper = null;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-            mLocationHandlerThread.quitSafely();
-        else
-            mLocationHandlerThread.quit();
-
-        mLocationHandlerThread = null;
-
-        super.onPause();
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        Log.v("onchange", Double.toString(location.getLatitude()));
-        ((TextView)findViewById(R.id.tv_lng)).setText(Double.toString(location.getLongitude()));
-        ((TextView)findViewById(R.id.tv_lat)).setText(Double.toString(location.getLatitude()));
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extra) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }*/
 }
