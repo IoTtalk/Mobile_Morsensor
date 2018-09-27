@@ -103,14 +103,17 @@ public class TrackingService extends Service {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Log.v("ServiceOnCreate", "Permission checker");
             return;
         }
 //        locationManager.getBestProvider(new Criteria(), true)
         Log.v("locationManager", String.valueOf(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)));
         Log.v("locationManager", String.valueOf(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)));
         if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            Log.v("locationManager", "NETWORK_PROVIDER");
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
         } else if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Log.v("locationManager", "GPS_PROVIDER");
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
         }
         /*Log.v("GPS_PROVIDER", String.valueOf(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)));

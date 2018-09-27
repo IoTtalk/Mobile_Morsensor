@@ -1,10 +1,10 @@
 #Internal package file, do not edit.
-#Wed Sep 19 22:44:12 CST 2018
+#Thu Sep 20 15:15:06 CST 2018
 4.path=test.gif
 8.set=ASSET
 6.path=classes.dex
 0.baseType=DIRECTORY
-10.path=classes.dex
+10.path=iri_app_loading_running.gif
 5.baseType=DIRECTORY
 1.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 8.path=mic_action_angry.gif
@@ -14,7 +14,7 @@
 5.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\47
 7.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 11.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
-9.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
+9.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\48
 1.baseType=DIRECTORY
 11.set=ASSET
 0.set=ASSET
@@ -26,24 +26,24 @@
 1.path=index1.bin
 7.baseType=DIRECTORY
 3.path=classes.dex
-10.set=DEX
+10.set=ASSET
 5.path=classes.dex
 0.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 7.path=index2.bin
 11.path=fonts/tt0375m_.ttf
-9.path=iri_app_loading_running.gif
+9.path=classes.dex
 6.set=DEX
 2.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 11.baseType=DIRECTORY
 4.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 3.baseType=DIRECTORY
 6.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\45
-10.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\48
+10.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 8.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 2.set=ASSET
 8.baseType=DIRECTORY
 12.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
-9.set=ASSET
+9.set=DEX
 count=13
 12.baseType=DIRECTORY
 4.baseType=DIRECTORY

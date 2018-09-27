@@ -6,19 +6,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.HandlerThread;
 import android.os.Looper;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +22,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+
+import java.util.concurrent.Callable;
 
 public class TrackingMainViewActivity extends Activity /*implements LocationListener*/ {
     Button btnTrackStart;
@@ -36,6 +44,8 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     HandlerThread mLocationHandlerThread = null;
     Looper mLocationHandlerLooper = null;
     private BroadcastReceiver broadcastReceiver;
+    private static final int REQUEST_CHECK_SETTINGS = 0x1;
+
 
     private Spinner spnTimeSelector;
     String[] Mins = new String[] {"10", "20", "30", "40", "50", "60", "Unlimited"};
@@ -81,8 +91,13 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 }
         );*/
 
-        if(!runtime_permissions())
-            enable_buttons();
+//        if(!runtime_permissions())
+            runtime_permissions(new Callable<Boolean>() {
+                @Override
+                public Boolean call() throws Exception {
+                    return enable_buttons();
+                }
+            });
         /*this.locationMgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         mLocationHandlerThread = new HandlerThread("locationHandlerThread");
         this.prov = LocationManager.NETWORK_PROVIDER;//this.locationMgr.getBestProvider(criteria, true);
@@ -146,7 +161,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         }
     }
 
-    private void enable_buttons() {
+    private Boolean enable_buttons() {
         btnTrackStart = (Button)findViewById(R.id.trackStart);
         btnTrackStart.setOnClickListener(
                 new View.OnClickListener() {
@@ -173,16 +188,60 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                     }
                 }
         );
+        return true;
     }
 
-    private boolean runtime_permissions() {
-        if(Build.VERSION.SDK_INT >= 23
-                && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-            return true;
-        }
-        return false;
+
+
+    protected void runtime_permissions(final Callable<Boolean> SuccessCB) {
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+
+
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+
+        SettingsClient client = LocationServices.getSettingsClient(this);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+        Log.v("GPS", "Comein");
+        task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                Log.v("GPS", "Success");
+                try {
+                    SuccessCB.call();
+                }
+                catch (Exception e) {}
+            }
+        });
+
+        task.addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if (e instanceof ResolvableApiException) {
+                    // Location settings are not satisfied, but this can be fixed
+                    // by showing the user a dialog.
+                    try {
+                        // Show the dialog by calling startResolutionForResult(),
+                        // and check the result in onActivityResult().
+                        ResolvableApiException resolvable = (ResolvableApiException) e;
+                        resolvable.startResolutionForResult(TrackingMainViewActivity.this,
+                                REQUEST_CHECK_SETTINGS);
+
+                        SuccessCB.call();
+                    } catch (IntentSender.SendIntentException sendEx) {
+                        // Ignore the error.
+                    }
+                    catch (Exception err) {
+
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -192,7 +251,12 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 enable_buttons();
             } else {
-                runtime_permissions();
+                runtime_permissions(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        return enable_buttons();
+                    }
+                });
             }
         }
     }
