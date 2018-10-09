@@ -20,6 +20,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import tw.org.cic.morsensor_mobile.TrackingDAI;
+
 public class TrackingService extends Service {
 
     private LocationListener listener;
@@ -69,11 +74,21 @@ public class TrackingService extends Service {
 
         listener = new LocationListener() {
             @Override
-            public void onLocationChanged(Location location) {
+            public void onLocationChanged(final Location location) {
                 Intent i = new Intent("location_update");
                 i.putExtra("coordinates", location.getLatitude() + " " + location.getLongitude());
                 sendBroadcast(i);
                 Log.v("onchange", Double.toString(location.getLatitude())+" "+Double.toString(location.getLongitude()));
+                Thread thread = new Thread(new Runnable(){
+                    @Override
+                    public void run(){
+                        //code to do the HTTP request
+                         TrackingDAI.push(location.getLatitude(), location.getLongitude(), "APP_TEST", 14, getCurrentLocalDateTimeStamp());
+                        Log.v("Thread", "TrackingDAI.GeoData finish");
+                    }
+                });
+                thread.start();
+
             }
 
             @Override
@@ -121,6 +136,17 @@ public class TrackingService extends Service {
         locationManager.requestLocationUpdates(locationManager.getBestProvider(new Criteria(), true), 0, 0, listener);*/
 //        locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         Log.v("locationManager", String.valueOf(locationManager));
+
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                //code to do the HTTP request
+                TrackingDAI.main();
+                Log.v("Thread", "TrackingDAI.main finish");
+            }
+        });
+        thread.start();
+
     }
 
     @Override
@@ -130,5 +156,10 @@ public class TrackingService extends Service {
             locationManager.removeUpdates(listener);
             Log.v("onDestroy", "onDestroy");
         }
+    }
+
+    public String getCurrentLocalDateTimeStamp() {
+        String date = String.valueOf(android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()));
+        return date;
     }
 }

@@ -92,12 +92,13 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         );*/
 
 //        if(!runtime_permissions())
-            runtime_permissions(new Callable<Boolean>() {
+            /*runtime_permissions(new Callable<Boolean>() {
                 @Override
                 public Boolean call() throws Exception {
                     return enable_buttons();
                 }
-            });
+            });*/
+        enable_buttons();
         /*this.locationMgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         mLocationHandlerThread = new HandlerThread("locationHandlerThread");
         this.prov = LocationManager.NETWORK_PROVIDER;//this.locationMgr.getBestProvider(criteria, true);
@@ -146,6 +147,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 public void onReceive(Context context, Intent intent) {
                     Log.v("onReceive", intent.getExtras().get("coordinates").toString());
                     ((TextView)findViewById(R.id.tv_lng)).setText(intent.getExtras().get("coordinates").toString());
+
 //                    ((TextView)findViewById(R.id.tv_lat)).setText(Double.toString(location.getLatitude()));
                 }
             };
@@ -167,13 +169,13 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(getApplicationContext(), TrackingService.class);
+                        runtime_permissions();
+                        /*Intent i = new Intent(getApplicationContext(), TrackingService.class);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             startForegroundService(i);
                         } else {
                             startService(i);
-                        }
-//                        startService(i);
+                        }*/
                     }
                 }
         );
@@ -191,9 +193,18 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         return true;
     }
 
+    private void startTrackingService() {
+        Intent i = new Intent(getApplicationContext(), TrackingService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(i);
+        } else {
+            startService(i);
+        }
+    }
 
 
-    protected void runtime_permissions(final Callable<Boolean> SuccessCB) {
+
+    protected void runtime_permissions(/*final Callable<Boolean> SuccessCB*/) {
         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
 
 
@@ -212,10 +223,11 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             @Override
             public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                 Log.v("GPS", "Success");
-                try {
+                startTrackingService();
+                /*try {
                     SuccessCB.call();
                 }
-                catch (Exception e) {}
+                catch (Exception e) {}*/
             }
         });
 
@@ -232,7 +244,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                         resolvable.startResolutionForResult(TrackingMainViewActivity.this,
                                 REQUEST_CHECK_SETTINGS);
 
-                        SuccessCB.call();
+                        //SuccessCB.call();
                     } catch (IntentSender.SendIntentException sendEx) {
                         // Ignore the error.
                     }
@@ -245,18 +257,34 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == REQUEST_CHECK_SETTINGS) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                startTrackingService();
+                // The user picked a contact.
+                // The Intent's data Uri identifies which contact was selected.
+
+                // Do something with the contact here (bigger example below)
+            }
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(requestCode == 100){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 enable_buttons();
             } else {
-                runtime_permissions(new Callable<Boolean>() {
+                runtime_permissions();
+                /*runtime_permissions(new Callable<Boolean>() {
                     @Override
                     public Boolean call() throws Exception {
                         return enable_buttons();
                     }
-                });
+                });*/
             }
         }
     }
