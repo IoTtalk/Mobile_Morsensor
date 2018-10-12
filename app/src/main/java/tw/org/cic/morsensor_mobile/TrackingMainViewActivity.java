@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,9 +34,25 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.concurrent.Callable;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class TrackingMainViewActivity extends Activity /*implements LocationListener*/ {
+    String urlAdress = "https://iot.iottalk.tw/secure/_set_tracking_id";
+
+    EditText name;
+
     Button btnTrackStart;
     Button btnTrackStop;
     private LocationManager locationMgr;
@@ -56,6 +73,8 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking_main_view);
+
+        name = (EditText) findViewById(R.id.inputName);
 
         spnTimeSelector = (Spinner) findViewById(R.id.timeSelector);
         ArrayAdapter<String> adapterMins = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Mins);
@@ -194,7 +213,16 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     }
 
     private void startTrackingService() {
+        String trackingName = name.getText().toString();
+        Log.v("startTrackingService", trackingName);
+
+        set_tracking_id(trackingName);
+
+
         Intent i = new Intent(getApplicationContext(), TrackingService.class);
+        i.putExtra("trackingName", trackingName);
+//        i.putExtra("trackingId", );
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(i);
         } else {
@@ -202,6 +230,64 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         }
     }
 
+    public void set_tracking_id(final String trackingName) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response;
+                int resCode;
+                InputStream in;
+                try {
+                    URL url = new URL(urlAdress+"?app=HumanTracking&name="+trackingName);
+                    Log.i("set_tracking_id", url.toString());
+                    HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+                    conn.setAllowUserInteraction(false);
+                    conn.setInstanceFollowRedirects(true);
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                    conn.setRequestProperty("Accept","application/json");
+//                    conn.setDoOutput(true);
+                    conn.connect();
+
+
+                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+                    Log.i("MSG" , conn.getResponseMessage());
+
+                    resCode = conn.getResponseCode();
+
+                    if (resCode == HttpURLConnection.HTTP_OK) {
+                        Log.v("set_tracking_id", "HTTP_OK in");
+                        in = conn.getInputStream();
+
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            sb.append(line).append("\n");
+                        }
+                        in.close();
+                        response = sb.toString();
+
+                        Log.v("set_tracking_id", response);
+
+                        JSONObject jsonResponse = new JSONObject(response);
+                        JSONArray jsonResultArr = jsonResponse.getJSONArray("result");
+                        JSONObject jsonIdObject = (JSONObject) jsonResultArr.get(0);
+                        String trackingId = jsonIdObject.getString("id");
+
+
+                        Log.v("set_tracking_id", trackingId);
+                    }
+
+                    conn.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+    }
 
 
     protected void runtime_permissions(/*final Callable<Boolean> SuccessCB*/) {
@@ -262,6 +348,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
+
                 startTrackingService();
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.

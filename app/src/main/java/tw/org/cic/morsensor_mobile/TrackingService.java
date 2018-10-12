@@ -26,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import tw.org.cic.morsensor_mobile.TrackingDAI;
 
 public class TrackingService extends Service {
+    private String trackingName;
 
     private LocationListener listener;
     private LocationManager locationManager;
@@ -64,6 +65,8 @@ public class TrackingService extends Service {
 
             startForeground(1, notification);
         }
+
+        trackingName = intent.getExtras().getString("trackingName");
         return START_NOT_STICKY;
     }
 
@@ -76,14 +79,15 @@ public class TrackingService extends Service {
             @Override
             public void onLocationChanged(final Location location) {
                 Intent i = new Intent("location_update");
-                i.putExtra("coordinates", location.getLatitude() + " " + location.getLongitude());
+                i.putExtra("coordinates", location.getProvider()+" "+location.getLatitude() + " " + location.getLongitude());
                 sendBroadcast(i);
-                Log.v("onchange", Double.toString(location.getLatitude())+" "+Double.toString(location.getLongitude()));
+
+                Log.v("onchange", location.getProvider()+" "+Double.toString(location.getLatitude())+" "+Double.toString(location.getLongitude()));
                 Thread thread = new Thread(new Runnable(){
                     @Override
                     public void run(){
                         //code to do the HTTP request
-                         TrackingDAI.push(location.getLatitude(), location.getLongitude(), "APP_TEST", 14, getCurrentLocalDateTimeStamp());
+                         TrackingDAI.push(location.getLatitude(), location.getLongitude(), trackingName, 14, getCurrentLocalDateTimeStamp());
                         Log.v("Thread", "TrackingDAI.GeoData finish");
                     }
                 });
@@ -127,7 +131,8 @@ public class TrackingService extends Service {
         if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             Log.v("locationManager", "NETWORK_PROVIDER");
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
-        } else if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+        }
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             Log.v("locationManager", "GPS_PROVIDER");
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
         }
