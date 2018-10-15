@@ -2,18 +2,24 @@ package tw.org.cic.morsensor_mobile;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
+import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -21,8 +27,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationRequest;
@@ -49,6 +57,11 @@ import java.util.concurrent.Callable;
 import javax.net.ssl.HttpsURLConnection;
 
 public class TrackingMainViewActivity extends Activity /*implements LocationListener*/ {
+    boolean isTrackingStart = false;
+    private static final int DO_START = 0;
+    private static final int DO_STOP = 1;
+
+
     String urlAdress = "https://iot.iottalk.tw/secure/_set_tracking_id";
 
     EditText name;
@@ -62,6 +75,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     Looper mLocationHandlerLooper = null;
     private BroadcastReceiver broadcastReceiver;
     private static final int REQUEST_CHECK_SETTINGS = 0x1;
+    private Context context;
 
 
     private Spinner spnTimeSelector;
@@ -72,6 +86,9 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        context = this;
+
         setContentView(R.layout.activity_tracking_main_view);
 
         name = (EditText) findViewById(R.id.inputName);
@@ -188,7 +205,16 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        runtime_permissions();
+                        if(isTrackingStart) {
+                            Log.v("btnTrackStartIf", String.valueOf(isTrackingStart));
+                            stopTrackingService();
+                        }
+                        else {
+                            Log.v("btnTrackStartElse", String.valueOf(isTrackingStart));
+                            checkNetWork();
+                        }
+
+//                        runtime_permissions();
                         /*Intent i = new Intent(getApplicationContext(), TrackingService.class);
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             startForegroundService(i);
@@ -212,22 +238,60 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         return true;
     }
 
-    private void startTrackingService() {
-        String trackingName = name.getText().toString();
-        Log.v("startTrackingService", trackingName);
+    private void stopTrackingService() {
+        Intent i = new Intent(getApplicationContext(), TrackingService.class);
+        stopService(i);
+        setTrackingStartBtn();
+    }
 
-        set_tracking_id(trackingName);
-
+    private void startTrackingService(String trackingName, String trackingId, String trackingApp) {
 
         Intent i = new Intent(getApplicationContext(), TrackingService.class);
         i.putExtra("trackingName", trackingName);
-//        i.putExtra("trackingId", );
+        i.putExtra("trackingId", trackingId);
+        i.putExtra("trackingApp", trackingApp);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(i);
         } else {
             startService(i);
         }
+
+        setTrackingStartBtn();
+    }
+
+    public void setTrackingStartBtn() {
+//        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.activity_tracking_main_view);
+
+        if(isTrackingStart) {
+            Log.v("setTrackingStartBtnIf", String.valueOf(isTrackingStart));
+            new Handler(Looper.getMainLooper()).post(new Runnable(){
+                @Override
+                public void run() {
+                    ((Button)findViewById(R.id.trackStart)).setText("Start");
+                }
+            });
+//            remoteViews.setTextViewText(R.id.trackStart, "Start");
+            isTrackingStart = false;
+        }
+        else {
+            Log.v("setTrackingStartBtnElse", String.valueOf(isTrackingStart));
+            new Handler(Looper.getMainLooper()).post(new Runnable(){
+                @Override
+                public void run() {
+                    ((Button)findViewById(R.id.trackStart)).setText("Stop");
+                }
+            });
+//            remoteViews.setTextViewText(R.id.trackStart, "Stop");
+            isTrackingStart = true;
+        }
+    }
+
+    private void get_tracking_name() {
+        String trackingName = name.getText().toString();
+        Log.v("startTrackingService", trackingName);
+
+        set_tracking_id(trackingName);
     }
 
     public void set_tracking_id(final String trackingName) {
@@ -274,9 +338,10 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                         JSONArray jsonResultArr = jsonResponse.getJSONArray("result");
                         JSONObject jsonIdObject = (JSONObject) jsonResultArr.get(0);
                         String trackingId = jsonIdObject.getString("id");
+                        String trackingApp = jsonIdObject.getString("app_num");
+                        Log.v("set_tracking_id", trackingId+" "+trackingApp);
 
-
-                        Log.v("set_tracking_id", trackingId);
+                        startTrackingService(trackingName, trackingId, trackingApp);
                     }
 
                     conn.disconnect();
@@ -309,7 +374,8 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             @Override
             public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                 Log.v("GPS", "Success");
-                startTrackingService();
+                get_tracking_name();
+//                startTrackingService();
                 /*try {
                     SuccessCB.call();
                 }
@@ -348,12 +414,26 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-
-                startTrackingService();
+                get_tracking_name();
+//                startTrackingService();
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
 
                 // Do something with the contact here (bigger example below)
+            }
+            else {
+                try
+                {
+                    Thread.sleep(3000);
+                    if(resultCode != RESULT_OK) {
+                        Log.v("onActivityResult", "runtime_permissions");
+                        runtime_permissions();
+                    }
+                }
+                catch(InterruptedException ex)
+                {
+                    Thread.currentThread().interrupt();
+                }
             }
         }
     }
@@ -365,6 +445,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 enable_buttons();
             } else {
+                Log.v("onRequestPermissions", "runtime_permissions");
                 runtime_permissions();
                 /*runtime_permissions(new Callable<Boolean>() {
                     @Override
@@ -373,6 +454,31 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                     }
                 });*/
             }
+        }
+    }
+
+    private void checkNetWork() {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
+        if(isConnected) {
+            Log.v("isConnected", "runtime_permissions");
+            runtime_permissions();
+        }
+        else {
+            new AlertDialog.Builder(this).setMessage("沒有網路")
+                    .setPositiveButton("前往設定網路", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent callNetSettingIntent = new Intent(
+                                    android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                            Toast.makeText(context, "請前往開啟網路", Toast.LENGTH_LONG).show();
+                            startActivity(callNetSettingIntent);
+                        }
+                    })
+                    .show();
         }
     }
 

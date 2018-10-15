@@ -12,6 +12,7 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -27,6 +28,9 @@ import tw.org.cic.morsensor_mobile.TrackingDAI;
 
 public class TrackingService extends Service {
     private String trackingName;
+    private int trackingId;
+    private int trackingApp;
+    private boolean isWebOpen = false;
 
     private LocationListener listener;
     private LocationManager locationManager;
@@ -67,6 +71,8 @@ public class TrackingService extends Service {
         }
 
         trackingName = intent.getExtras().getString("trackingName");
+        trackingId = Integer.parseInt(intent.getExtras().getString("trackingId"));
+        trackingApp = Integer.parseInt(intent.getExtras().getString("trackingApp"));
         return START_NOT_STICKY;
     }
 
@@ -81,32 +87,43 @@ public class TrackingService extends Service {
                 Intent i = new Intent("location_update");
                 i.putExtra("coordinates", location.getProvider()+" "+location.getLatitude() + " " + location.getLongitude());
                 sendBroadcast(i);
-
                 Log.v("onchange", location.getProvider()+" "+Double.toString(location.getLatitude())+" "+Double.toString(location.getLongitude()));
                 Thread thread = new Thread(new Runnable(){
                     @Override
                     public void run(){
                         //code to do the HTTP request
-                         TrackingDAI.push(location.getLatitude(), location.getLongitude(), trackingName, 14, getCurrentLocalDateTimeStamp());
+                         TrackingDAI.push(location.getLatitude(), location.getLongitude(), trackingName, trackingId, getCurrentLocalDateTimeStamp());
                         Log.v("Thread", "TrackingDAI.GeoData finish");
                     }
                 });
                 thread.start();
 
+                if(!isWebOpen) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://iot.iottalk.tw/map/?name="+trackingName+"&app="+trackingApp));
+                    startActivity(browserIntent);
+                    isWebOpen = true;
+                }
+
             }
 
             @Override
             public void onStatusChanged(String provider, int status, Bundle extras) {
-
+                System.out.println("onStatusChanged");
+                System.out.println("privider:" + provider);
+                System.out.println("status:" + status);
+                System.out.println("extras:" + extras);
             }
 
             @Override
             public void onProviderEnabled(String provider) {
-
+                System.out.println("onProviderEnabled");
+                System.out.println("privider:" + provider);
             }
 
             @Override
             public void onProviderDisabled(String provider) {
+                System.out.println("onProviderDisabled");
+                System.out.println("privider:" + provider);
                 Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
@@ -151,7 +168,6 @@ public class TrackingService extends Service {
             }
         });
         thread.start();
-
     }
 
     @Override
