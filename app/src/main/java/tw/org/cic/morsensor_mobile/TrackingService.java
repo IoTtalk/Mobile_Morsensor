@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -21,13 +22,22 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.Executor;
 
-import tw.org.cic.morsensor_mobile.TrackingDAI;
+import tw.org.cic.morsensor_mobile.TrackingMainViewActivity;
 
 public class TrackingService extends Service {
     private String trackingName;
+    private String trackingTime;
     private int trackingId;
     private int trackingApp;
     private boolean isWebOpen = false;
@@ -37,6 +47,10 @@ public class TrackingService extends Service {
     private NotificationManager notificationManager;
     private NotificationChannel channelLove;
     private String ANDROID_CHANNEL_ID = "1";
+
+    private FusedLocationProviderClient mFusedLocationClient;
+    private LocationCallback mLocationCallback;
+
 
     @Nullable
     @Override
@@ -73,6 +87,9 @@ public class TrackingService extends Service {
         trackingName = intent.getExtras().getString("trackingName");
         trackingId = Integer.parseInt(intent.getExtras().getString("trackingId"));
         trackingApp = Integer.parseInt(intent.getExtras().getString("trackingApp"));
+        trackingTime = intent.getExtras().getString("trackingTime");
+        Log.v("trackingTime", "trackingTime1 "+ isNumeric(trackingTime));
+        setTrackingTime();
         return START_NOT_STICKY;
     }
 
@@ -80,8 +97,57 @@ public class TrackingService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.v("ServiceonCreate", "ServiceonCreate");
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        listener = new LocationListener() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            Log.v("getLastLocation", String.valueOf(location));
+                            setCurrentLocation(location);
+                        }
+                    }
+                });
+
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult == null) {
+                    reStartLocationUpdate();
+                    return;
+                }
+
+                for (Location location : locationResult.getLocations()) {
+                    Log.v("LocationCallback", String.valueOf(location) + "\n" + location.getAccuracy());
+                    if(location.getAccuracy() >= 50) {
+                        reStartLocationUpdate();
+                        return;
+                    }
+                    setCurrentLocation(location);
+                }
+            }
+
+            ;
+        };
+
+        startLocationUpdates();
+
+
+
+        /*listener = new LocationListener() {
             @Override
             public void onLocationChanged(final Location location) {
                 Intent i = new Intent("location_update");
@@ -153,34 +219,132 @@ public class TrackingService extends Service {
             Log.v("locationManager", "GPS_PROVIDER");
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
         }
-        /*Log.v("GPS_PROVIDER", String.valueOf(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)));
-        Log.v("NETWORK_PROVIDER", String.valueOf(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)));
-        locationManager.requestLocationUpdates(locationManager.getBestProvider(new Criteria(), true), 0, 0, listener);*/
-//        locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        Log.v("locationManager", String.valueOf(locationManager));
 
-        Thread thread = new Thread(new Runnable(){
+        Log.v("locationManager", String.valueOf(locationManager));*/
+
+        Thread thread = new Thread(new Runnable() {
             @Override
-            public void run(){
+            public void run() {
                 //code to do the HTTP request
                 TrackingDAI.main();
                 Log.v("Thread", "TrackingDAI.main finish");
             }
         });
         thread.start();
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(locationManager != null) {
+        stopLocationUpdates();
+        Log.v("onDestroy", "onDestroy");
+        /*if (locationManager != null) {
             locationManager.removeUpdates(listener);
             Log.v("onDestroy", "onDestroy");
+        }*/
+    }
+
+    private void setTrackingTime() {
+        if(isNumeric(trackingTime)) {
+            final int timer = Integer.parseInt(trackingTime);
+            Thread timeThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //code to do the HTTP request
+                try{
+                    Log.v("timeThread", "timeThread start " + timer);
+                    Thread.sleep(timer*1000);
+
+                    
+
+                    stopSelf();
+
+                    /*Log.v("timeThread", "timeThread end " + timer);
+                    SharedPreferences settings;
+                    Boolean isTrackingStart = false;
+                    settings = getSharedPreferences(TrackingMainViewActivity.data,MODE_PRIVATE);
+                    settings.edit()
+                            .putBoolean(TrackingMainViewActivity.STATE_TRACK, isTrackingStart)
+                            .commit();*/
+
+
+
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        timeThread.start();
+        }
+    }
+
+    private void setCurrentLocation(final Location location) {
+        Intent i = new Intent("location_update");
+        i.putExtra("coordinates", location.getLatitude() + " " + location.getLongitude());
+        sendBroadcast(i);
+        Log.v("onchange", location.getProvider()+" "+Double.toString(location.getLatitude())+" "+Double.toString(location.getLongitude()));
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run(){
+                //code to do the HTTP request
+                TrackingDAI.push(location.getLatitude(), location.getLongitude(), trackingName, trackingId, getCurrentLocalDateTimeStamp());
+                Log.v("Thread", "TrackingDAI.GeoData finish");
+            }
+        });
+        thread.start();
+
+        if(!isWebOpen) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp));
+            startActivity(browserIntent);
+            isWebOpen = true;
         }
     }
 
     public String getCurrentLocalDateTimeStamp() {
         String date = String.valueOf(android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()));
         return date;
+    }
+
+    public static boolean isNumeric(String str)
+    {
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mFusedLocationClient.requestLocationUpdates(TrackingMainViewActivity.mLocationRequest,
+                mLocationCallback,
+                null /* Looper */);
+
+        Log.v("startLocationUpdates", "startLocationUpdates");
+    }
+
+    private void stopLocationUpdates() {
+        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+        Log.v("stopLocationUpdates", "stopLocationUpdates");
+    }
+
+    private void reStartLocationUpdate() {
+        stopLocationUpdates();
+        startLocationUpdates();
+        Log.v("reStartLocationUpdate", "reStartLocationUpdate***************************************************");
     }
 }

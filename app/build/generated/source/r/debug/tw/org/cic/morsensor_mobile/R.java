@@ -3072,17 +3072,15 @@ public final class R {
     public static final int top=0x7f080095;
     public static final int topPanel=0x7f080096;
     public static final int trackStart=0x7f080097;
-    public static final int trackStop=0x7f080098;
-    public static final int trackingTime=0x7f080099;
-    public static final int tv_lat=0x7f08009a;
-    public static final int tv_lng=0x7f08009b;
-    public static final int up=0x7f08009c;
-    public static final int useLogo=0x7f08009d;
-    public static final int view_offset_helper=0x7f08009e;
-    public static final int wide=0x7f08009f;
-    public static final int withText=0x7f0800a0;
-    public static final int wrap=0x7f0800a1;
-    public static final int wrap_content=0x7f0800a2;
+    public static final int trackingTime=0x7f080098;
+    public static final int tv_lng=0x7f080099;
+    public static final int up=0x7f08009a;
+    public static final int useLogo=0x7f08009b;
+    public static final int view_offset_helper=0x7f08009c;
+    public static final int wide=0x7f08009d;
+    public static final int withText=0x7f08009e;
+    public static final int wrap=0x7f08009f;
+    public static final int wrap_content=0x7f0800a0;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f090000;

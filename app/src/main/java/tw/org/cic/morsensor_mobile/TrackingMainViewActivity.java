@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.LocationManager;
@@ -21,13 +22,13 @@ import android.os.HandlerThread;
 import android.os.Looper;
 import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,17 +58,23 @@ import java.util.concurrent.Callable;
 import javax.net.ssl.HttpsURLConnection;
 
 public class TrackingMainViewActivity extends Activity /*implements LocationListener*/ {
-    boolean isTrackingStart = false;
-    private static final int DO_START = 0;
-    private static final int DO_STOP = 1;
+    private SharedPreferences settings;
+    static final String data = "DATA";
+    static final String STATE_NAME = "trackingName";
+    static final String STATE_TIME = "trackingTime";
+    static final String STATE_TRACK = "trackingStatus";
+    public static final String FIRST_RUN = "first";
+    private boolean first;
 
+    static LocationRequest  mLocationRequest;
+
+    boolean isTrackingStart = false;
 
     String urlAdress = "https://iot.iottalk.tw/secure/_set_tracking_id";
 
     EditText name;
 
     Button btnTrackStart;
-    Button btnTrackStop;
     private LocationManager locationMgr;
     private String prov;
     private Criteria criteria = new Criteria();
@@ -79,13 +86,17 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
 
 
     private Spinner spnTimeSelector;
+    ArrayAdapter<String> adapterMins;
     String[] Mins = new String[] {"10", "20", "30", "40", "50", "60", "Unlimited"};
     private Spinner.OnItemSelectedListener spnTimeSelectorListener;
     String sel;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.v("TrackingMainActivity", "onCreate");
 
         context = this;
 
@@ -94,7 +105,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         name = (EditText) findViewById(R.id.inputName);
 
         spnTimeSelector = (Spinner) findViewById(R.id.timeSelector);
-        ArrayAdapter<String> adapterMins = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Mins);
+        adapterMins = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Mins);
         adapterMins.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnTimeSelector.setAdapter(adapterMins);
 
@@ -113,90 +124,71 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             }
         };
         spnTimeSelector.setOnItemSelectedListener(spnTimeSelectorListener);
-//        Intent intent = new Intent(this, TrackingService.class);
-//        this.startService(intent);
+
         Log.v("MainActivity", "into");
-
-        /*btnTrackStart = (Button)findViewById(R.id.trackStart);
-        btnTrackStart.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //Log.d("0912",editTextName.getText().toString());
-                    }
-                }
-        );*/
-
-//        if(!runtime_permissions())
-            /*runtime_permissions(new Callable<Boolean>() {
-                @Override
-                public Boolean call() throws Exception {
-                    return enable_buttons();
-                }
-            });*/
         enable_buttons();
-        /*this.locationMgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        mLocationHandlerThread = new HandlerThread("locationHandlerThread");
-        this.prov = LocationManager.NETWORK_PROVIDER;//this.locationMgr.getBestProvider(criteria, true);
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                || ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            // No one provider activated: prompt GPS
-            if (this.prov == null || this.prov.equals("")) {
-                startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                this.prov = this.locationMgr.getBestProvider(criteria, true);
-            }
-
-            this.locationMgr.requestLocationUpdates(this.prov, 1000, 0, this);
-            Location location = this.locationMgr.getLastKnownLocation(this.prov);
-            Log.v("main", Double.toString(location.getLatitude()));
-            ((TextView)findViewById(R.id.tv_lng)).setText(Double.toString(location.getLongitude()));
-            ((TextView)findViewById(R.id.tv_lat)).setText(Double.toString(location.getLatitude()));
-
-            // One or both permissions are denied.
-        } else {
-
-            // The ACCESS_COARSE_LOCATION is denied, then I request it and manage the result in
-            // onRequestPermissionsResult() using the constant MY_PERMISSION_ACCESS_FINE_LOCATION
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                        11);
-            }
-            // The ACCESS_FINE_LOCATION is denied, then I request it and manage the result in
-            // onRequestPermissionsResult() using the constant MY_PERMISSION_ACCESS_FINE_LOCATION
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
-                ActivityCompat.requestPermissions(this,
-                        new String[] { Manifest.permission.ACCESS_FINE_LOCATION },
-                        11);
-            }
-
-        }*/
+        settings = getSharedPreferences(data,MODE_PRIVATE);
+        first = settings.getBoolean(FIRST_RUN, true);
+        if(!first)
+            readData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        Log.v("onResume", "isTrackingStart: "+isTrackingStart);
+
         if(broadcastReceiver == null) {
             broadcastReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    Log.v("onReceive", intent.getExtras().get("coordinates").toString());
+                    Log.v("onResume", intent.getExtras().get("coordinates").toString());
                     ((TextView)findViewById(R.id.tv_lng)).setText(intent.getExtras().get("coordinates").toString());
-
-//                    ((TextView)findViewById(R.id.tv_lat)).setText(Double.toString(location.getLatitude()));
                 }
             };
         }
         registerReceiver(broadcastReceiver, new IntentFilter("location_update"));
     }
 
+    public void saveData() {
+        settings = getSharedPreferences(data,MODE_PRIVATE);
+        settings.edit()
+                .putString(STATE_NAME, name.getText().toString())
+                .putString(STATE_TIME, sel)
+                .putBoolean(STATE_TRACK, isTrackingStart)
+                .putBoolean(FIRST_RUN, false)
+                .commit();
+
+        Log.v("saveData", "saveData----------------------------------------------------------------------------------");
+    }
+
+    public void readData() {
+        settings = getSharedPreferences(data,0);
+
+        name.setText(settings.getString(STATE_NAME, ""));
+
+        sel = settings.getString(STATE_TIME, "");
+        int selectionPosition= adapterMins.getPosition(sel);
+        spnTimeSelector.setSelection(selectionPosition);
+
+        isTrackingStart = settings.getBoolean(STATE_TRACK, false);
+
+        Log.v("readData", "isTrackingStart: "+isTrackingStart);
+        setTrackingBtnView();
+        Log.v("readData", "readData----------------------------------------------------------------------------------");
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.v("TrackingMainActivity", "onDestroy");
         if(broadcastReceiver != null) {
             unregisterReceiver(broadcastReceiver);
         }
+
+        saveData();
     }
 
     private Boolean enable_buttons() {
@@ -214,27 +206,10 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                             checkNetWork();
                         }
 
-//                        runtime_permissions();
-                        /*Intent i = new Intent(getApplicationContext(), TrackingService.class);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            startForegroundService(i);
-                        } else {
-                            startService(i);
-                        }*/
                     }
                 }
         );
 
-        btnTrackStop = (Button)findViewById(R.id.trackStop);
-        btnTrackStop.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(getApplicationContext(), TrackingService.class);
-                        stopService(i);
-                    }
-                }
-        );
         return true;
     }
 
@@ -250,6 +225,8 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         i.putExtra("trackingName", trackingName);
         i.putExtra("trackingId", trackingId);
         i.putExtra("trackingApp", trackingApp);
+        i.putExtra("trackingTime", sel);
+        Log.v("startTrackingService", "sel"+sel);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(i);
@@ -257,11 +234,31 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             startService(i);
         }
 
+
+
         setTrackingStartBtn();
     }
 
+    public void setTrackingBtnView() {
+        if(isTrackingStart) {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    ((Button) findViewById(R.id.trackStart)).setText("Stop");
+                }
+            });
+        }
+        else {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    ((Button) findViewById(R.id.trackStart)).setText("Start");
+                }
+            });
+        }
+    }
+
     public void setTrackingStartBtn() {
-//        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.activity_tracking_main_view);
 
         if(isTrackingStart) {
             Log.v("setTrackingStartBtnIf", String.valueOf(isTrackingStart));
@@ -271,7 +268,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                     ((Button)findViewById(R.id.trackStart)).setText("Start");
                 }
             });
-//            remoteViews.setTextViewText(R.id.trackStart, "Start");
+
             isTrackingStart = false;
         }
         else {
@@ -282,16 +279,21 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                     ((Button)findViewById(R.id.trackStart)).setText("Stop");
                 }
             });
-//            remoteViews.setTextViewText(R.id.trackStart, "Stop");
+
             isTrackingStart = true;
         }
     }
 
     private void get_tracking_name() {
         String trackingName = name.getText().toString();
-        Log.v("startTrackingService", trackingName);
-
-        set_tracking_id(trackingName);
+        Log.v("get_tracking_name", trackingName);
+        if(trackingName.equals("")) {
+            name.setError("Field cannot be left blank.");
+        }
+        else {
+            Log.v("get_tracking_name", trackingName + "go to set_tracking_id");
+            set_tracking_id(trackingName);
+        }
     }
 
     public void set_tracking_id(final String trackingName) {
@@ -310,7 +312,6 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                     conn.setRequestMethod("GET");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
                     conn.setRequestProperty("Accept","application/json");
-//                    conn.setDoOutput(true);
                     conn.connect();
 
 
@@ -359,7 +360,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
 
 
-        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(10000);
         mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -415,25 +416,13 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 get_tracking_name();
-//                startTrackingService();
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
 
                 // Do something with the contact here (bigger example below)
             }
-            else {
-                try
-                {
-                    Thread.sleep(3000);
-                    if(resultCode != RESULT_OK) {
-                        Log.v("onActivityResult", "runtime_permissions");
-                        runtime_permissions();
-                    }
-                }
-                catch(InterruptedException ex)
-                {
-                    Thread.currentThread().interrupt();
-                }
+            else if(resultCode == 0){
+                runtime_permissions();
             }
         }
     }
@@ -447,12 +436,6 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             } else {
                 Log.v("onRequestPermissions", "runtime_permissions");
                 runtime_permissions();
-                /*runtime_permissions(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        return enable_buttons();
-                    }
-                });*/
             }
         }
     }
