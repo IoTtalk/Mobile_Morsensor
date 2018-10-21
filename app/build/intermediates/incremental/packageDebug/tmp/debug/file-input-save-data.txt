@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Oct 16 11:32:01 CST 2018
+#Thu Oct 18 15:04:38 CST 2018
 4.path=test.gif
 8.set=ASSET
 6.path=classes.dex

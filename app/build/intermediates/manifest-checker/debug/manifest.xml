@@ -71,6 +71,9 @@
         <activity android:name="tw.org.cic.morsensor_mobile.TrackingMainViewActivity" >
         </activity>
 
+        <receiver android:name="tw.org.cic.morsensor_mobile.TrackingBroadcastReceiver" >
+        </receiver>
+
         <service android:name="tw.org.cic.morsensor_mobile.Mainservice" />
         <service android:name="tw.org.cic.morsensor_mobile.TrackingService" />
 

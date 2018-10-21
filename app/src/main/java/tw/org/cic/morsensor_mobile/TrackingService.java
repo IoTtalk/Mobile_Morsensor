@@ -4,7 +4,9 @@ import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,9 +19,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -35,6 +40,9 @@ import java.util.concurrent.Executor;
 
 import tw.org.cic.morsensor_mobile.TrackingMainViewActivity;
 
+import static android.content.Intent.ACTION_DELETE;
+import static tw.org.cic.morsensor_mobile.TrackingMainViewActivity.settings;
+
 public class TrackingService extends Service {
     private String trackingName;
     private String trackingTime;
@@ -47,10 +55,20 @@ public class TrackingService extends Service {
     private NotificationManager notificationManager;
     private NotificationChannel channelLove;
     private String ANDROID_CHANNEL_ID = "1";
+    private String CHANNEL_ID = "Tracking";
 
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationCallback mLocationCallback;
 
+    Intent timeNotificationIntent;
+    PendingIntent timePendingIntent;
+    Notification.Builder timeBuilder;
+    NotificationManager timeNotificationManager;
+    int TIME_NOTIFICATION_ID = 2;
+
+    Notification.Builder builder;
+    int NOTIFICATION_ID = 1;
+    Notification notification;
 
     @Nullable
     @Override
@@ -62,26 +80,26 @@ public class TrackingService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
+            builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
                     .setContentTitle(getString(R.string.app_name))
                     .setContentText("test")
                     .setAutoCancel(true);
 
-            Notification notification = builder.build();
-            startForeground(1, notification);
+            notification = builder.build();
+            startForeground(NOTIFICATION_ID, notification);
 
 
         } else {
 
-            Notification.Builder builder = new Notification.Builder(this)
+            builder = new Notification.Builder(this)
                     .setContentTitle(getString(R.string.app_name))
                     .setContentText("test")
                     .setPriority(Notification.PRIORITY_DEFAULT)
                     .setAutoCancel(true);
 
-            Notification notification = builder.build();
+            notification = builder.build();
 
-            startForeground(1, notification);
+            startForeground(NOTIFICATION_ID, notification);
         }
 
         trackingName = intent.getExtras().getString("trackingName");
@@ -145,82 +163,26 @@ public class TrackingService extends Service {
 
         startLocationUpdates();
 
+        createNotificationChannel();
 
+        timeNotificationIntent = new Intent(this, TrackingMainViewActivity.class);
+        timeNotificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        timePendingIntent = PendingIntent.getActivity(this, 0, timeNotificationIntent, 0);
 
-        /*listener = new LocationListener() {
-            @Override
-            public void onLocationChanged(final Location location) {
-                Intent i = new Intent("location_update");
-                i.putExtra("coordinates", location.getProvider()+" "+location.getLatitude() + " " + location.getLongitude());
-                sendBroadcast(i);
-                Log.v("onchange", location.getProvider()+" "+Double.toString(location.getLatitude())+" "+Double.toString(location.getLongitude()));
-                Thread thread = new Thread(new Runnable(){
-                    @Override
-                    public void run(){
-                        //code to do the HTTP request
-                         TrackingDAI.push(location.getLatitude(), location.getLongitude(), trackingName, trackingId, getCurrentLocalDateTimeStamp());
-                        Log.v("Thread", "TrackingDAI.GeoData finish");
-                    }
-                });
-                thread.start();
+        Intent deleteIntent = new Intent(this, TrackingBroadcastReceiver.class);
+        PendingIntent deletePendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 0, deleteIntent, 0);
 
-                if(!isWebOpen) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://iot.iottalk.tw/map/?name="+trackingName+"&app="+trackingApp));
-                    startActivity(browserIntent);
-                    isWebOpen = true;
-                }
+        timeBuilder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.mobile_icon)
+                .setContentTitle("Tracking End")
+                .setContentText("Please tap here if you want to track again.")
+                .setChannelId(CHANNEL_ID)
+                .setPriority(Notification.PRIORITY_MAX)
+                .setContentIntent(timePendingIntent)
+                .setAutoCancel(true);
 
-            }
+        timeBuilder.setDeleteIntent(deletePendingIntent);
 
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-                System.out.println("onStatusChanged");
-                System.out.println("privider:" + provider);
-                System.out.println("status:" + status);
-                System.out.println("extras:" + extras);
-            }
-
-            @Override
-            public void onProviderEnabled(String provider) {
-                System.out.println("onProviderEnabled");
-                System.out.println("privider:" + provider);
-            }
-
-            @Override
-            public void onProviderDisabled(String provider) {
-                System.out.println("onProviderDisabled");
-                System.out.println("privider:" + provider);
-                Intent i = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-            }
-        };
-
-        locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            Log.v("ServiceOnCreate", "Permission checker");
-            return;
-        }
-//        locationManager.getBestProvider(new Criteria(), true)
-        Log.v("locationManager", String.valueOf(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)));
-        Log.v("locationManager", String.valueOf(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)));
-        if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            Log.v("locationManager", "NETWORK_PROVIDER");
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, listener);
-        }
-        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Log.v("locationManager", "GPS_PROVIDER");
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
-        }
-
-        Log.v("locationManager", String.valueOf(locationManager));*/
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -239,11 +201,9 @@ public class TrackingService extends Service {
         super.onDestroy();
         stopLocationUpdates();
         Log.v("onDestroy", "onDestroy");
-        /*if (locationManager != null) {
-            locationManager.removeUpdates(listener);
-            Log.v("onDestroy", "onDestroy");
-        }*/
     }
+
+
 
     private void setTrackingTime() {
         if(isNumeric(trackingTime)) {
@@ -256,19 +216,26 @@ public class TrackingService extends Service {
                     Log.v("timeThread", "timeThread start " + timer);
                     Thread.sleep(timer*1000);
 
-                    
+                    // notificationId is a unique int for each notification that you must define
+                    timeNotificationManager.notify(TIME_NOTIFICATION_ID, timeBuilder.build());
 
-                    stopSelf();
-
-                    /*Log.v("timeThread", "timeThread end " + timer);
-                    SharedPreferences settings;
-                    Boolean isTrackingStart = false;
-                    settings = getSharedPreferences(TrackingMainViewActivity.data,MODE_PRIVATE);
-                    settings.edit()
-                            .putBoolean(TrackingMainViewActivity.STATE_TRACK, isTrackingStart)
-                            .commit();*/
+                    Boolean isTracking;
+                    isTracking = settings.getBoolean("trackingStatus", false);
+                    Log.v("setTrackingTime", String.valueOf(isTracking));
 
 
+                    Log.v("setTrackingTime", String.valueOf(settings));
+                    settings.edit().putBoolean("trackingStatus", false).commit();
+
+
+                    isTracking = settings.getBoolean("trackingStatus", false);
+                    Log.v("setTrackingTime", String.valueOf(isTracking));
+
+                    Intent i = new Intent("tracking_status_update");
+                    i.putExtra("trackingStatus", isTracking);
+                    sendBroadcast(i);
+
+                    stopLocationUpdates();
 
                 }catch(InterruptedException e){
                     e.printStackTrace();
@@ -276,6 +243,25 @@ public class TrackingService extends Service {
             }
         });
         timeThread.start();
+        }
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Tracking";
+            String description = "TrackingTest";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            channel.enableLights(true);
+            channel.enableVibration(true);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            timeNotificationManager = getSystemService(NotificationManager.class);
+            timeNotificationManager.createNotificationChannel(channel);
+            Log.v("NotificationChannel", "createNotificationChannel success");
         }
     }
 
@@ -348,3 +334,4 @@ public class TrackingService extends Service {
         Log.v("reStartLocationUpdate", "reStartLocationUpdate***************************************************");
     }
 }
+

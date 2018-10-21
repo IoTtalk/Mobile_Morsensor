@@ -66,6 +66,9 @@
         <activity android:name=".TrackingMainViewActivity">
         </activity>
 
+        <receiver android:name=".TrackingBroadcastReceiver">
+        </receiver>
+
 
 
         <service android:name=".Mainservice"/>

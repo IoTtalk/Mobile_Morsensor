@@ -58,7 +58,7 @@ import java.util.concurrent.Callable;
 import javax.net.ssl.HttpsURLConnection;
 
 public class TrackingMainViewActivity extends Activity /*implements LocationListener*/ {
-    private SharedPreferences settings;
+    static SharedPreferences settings;
     static final String data = "DATA";
     static final String STATE_NAME = "trackingName";
     static final String STATE_TIME = "trackingTime";
@@ -81,6 +81,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     HandlerThread mLocationHandlerThread = null;
     Looper mLocationHandlerLooper = null;
     private BroadcastReceiver broadcastReceiver;
+    private BroadcastReceiver trackStatusBroadcastReceiver;
     private static final int REQUEST_CHECK_SETTINGS = 0x1;
     private Context context;
 
@@ -138,8 +139,6 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     protected void onResume() {
         super.onResume();
 
-        Log.v("onResume", "isTrackingStart: "+isTrackingStart);
-
         if(broadcastReceiver == null) {
             broadcastReceiver = new BroadcastReceiver() {
                 @Override
@@ -150,10 +149,28 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             };
         }
         registerReceiver(broadcastReceiver, new IntentFilter("location_update"));
+
+        if( trackStatusBroadcastReceiver == null) {
+            trackStatusBroadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    isTrackingStart = Boolean.valueOf(intent.getExtras().get("trackingStatus").toString());
+                    Log.v("onResume", String.valueOf(isTrackingStart));
+                    if(isTrackingStart == false) {
+                        new Handler(Looper.getMainLooper()).post(new Runnable(){
+                            @Override
+                            public void run() {
+                                ((Button)findViewById(R.id.trackStart)).setText("Start");
+                            }
+                        });
+                    }
+                }
+            };
+        }
+        registerReceiver(trackStatusBroadcastReceiver, new IntentFilter("tracking_status_update"));
     }
 
     public void saveData() {
-        settings = getSharedPreferences(data,MODE_PRIVATE);
         settings.edit()
                 .putString(STATE_NAME, name.getText().toString())
                 .putString(STATE_TIME, sel)
@@ -165,7 +182,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     }
 
     public void readData() {
-        settings = getSharedPreferences(data,0);
+        Log.v("readData", String.valueOf(settings));
 
         name.setText(settings.getString(STATE_NAME, ""));
 
@@ -186,6 +203,9 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         Log.v("TrackingMainActivity", "onDestroy");
         if(broadcastReceiver != null) {
             unregisterReceiver(broadcastReceiver);
+        }
+        if(trackStatusBroadcastReceiver != null) {
+            unregisterReceiver(trackStatusBroadcastReceiver);
         }
 
         saveData();
@@ -233,8 +253,6 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         } else {
             startService(i);
         }
-
-
 
         setTrackingStartBtn();
     }
@@ -355,13 +373,9 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         thread.start();
     }
 
-
-    protected void runtime_permissions(/*final Callable<Boolean> SuccessCB*/) {
-        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-
-
+    protected void gps_permissions() {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
+        mLocationRequest.setInterval(5000);
         mLocationRequest.setFastestInterval(5000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
@@ -409,6 +423,11 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         });
     }
 
+
+    protected void runtime_permissions(/*final Callable<Boolean> SuccessCB*/) {
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
@@ -422,7 +441,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 // Do something with the contact here (bigger example below)
             }
             else if(resultCode == 0){
-                runtime_permissions();
+                gps_permissions();
             }
         }
     }
@@ -430,11 +449,13 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.v("onRequestPermissions", "onRequestPermissionsResult");
         if(requestCode == 100){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                enable_buttons();
+                Log.v("onRequestPermissions", "runtime_permissions if");
+                gps_permissions();
             } else {
-                Log.v("onRequestPermissions", "runtime_permissions");
+                Log.v("onRequestPermissions", "runtime_permissions else");
                 runtime_permissions();
             }
         }
