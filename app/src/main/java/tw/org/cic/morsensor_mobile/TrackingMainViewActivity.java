@@ -24,7 +24,9 @@ import android.renderscript.Sampler;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -106,7 +108,18 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         name = (EditText) findViewById(R.id.inputName);
 
         spnTimeSelector = (Spinner) findViewById(R.id.timeSelector);
-        adapterMins = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Mins);
+        adapterMins = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Mins){
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                ((TextView) v).setGravity(Gravity.CENTER);
+                return v;
+            }
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView,parent);
+                ((TextView) v).setGravity(Gravity.CENTER);
+                return v;
+            }
+        };
         adapterMins.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnTimeSelector.setAdapter(adapterMins);
 

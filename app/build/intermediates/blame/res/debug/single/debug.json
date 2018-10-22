@@ -304,6 +304,10 @@
         "source": "C:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\src\\main\\res\\anim\\zoom_out.xml"
     },
     {
+        "merged": "C:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\res\\merged\\debug\\drawable_corners.xml.flat",
+        "source": "C:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\src\\main\\res\\drawable\\corners.xml"
+    },
+    {
         "merged": "C:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_abc_ic_commit_search_api_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-22.2.0.aar\\27fa14f0bab73bacc58924b7bf6f68de\\res\\drawable-mdpi\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
