@@ -4,7 +4,24 @@
             "outputFile": "C:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rCN\\values-zh-rCN.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\dcb1767dca7f6ef71184de852158d6ed\\res\\values-zh-rCN\\values.xml",
+                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-16.0.1.aar\\0c970d79c1a122c5202fb895c6a15c1e\\res\\values-zh-rCN\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "251",
+                        "endColumns": "157",
+                        "endOffsets": "408"
+                    },
+                    "to": {
+                        "startLines": "23",
+                        "startColumns": "4",
+                        "startOffsets": "2390",
+                        "endColumns": "157",
+                        "endOffsets": "2543"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-16.0.1.aar\\148f82678f72c46062bd93e56956ac1f\\res\\values-zh-rCN\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -52,23 +69,6 @@
                         "startOffsets": "105,201,296,396,478,575,681,777,873,968,1065,1160,1258",
                         "endColumns": "95,94,99,81,96,105,95,95,94,96,94,97,111",
                         "endOffsets": "196,291,391,473,570,676,772,868,963,1060,1155,1253,1365"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Cindy\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\9ffdf35c6557839902a97c55ab6ec671\\res\\values-zh-rCN\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "251",
-                        "endColumns": "157",
-                        "endOffsets": "408"
-                    },
-                    "to": {
-                        "startLines": "23",
-                        "startColumns": "4",
-                        "startOffsets": "2390",
-                        "endColumns": "157",
-                        "endOffsets": "2543"
                     }
                 }
             ]

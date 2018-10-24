@@ -7,19 +7,27 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
     <Button
         android:id="@+id/MorSensor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/index_corners"
+        android:textColor="@color/iottalk_icon_color"
         android:text="MorSensor" />
 
     <Button
         android:id="@+id/Tracking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Tracking"
+        android:background="@drawable/index_corners"
+        android:textColor="@color/iottalk_icon_color"
         android:layout_below="@+id/MorSensor" />
 
     </RelativeLayout>

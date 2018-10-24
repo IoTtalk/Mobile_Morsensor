@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import tw.org.cic.tracking_mobile.TrackingMainViewActivity;
+
 public class MainActivity extends Activity {
     Button btnMorSensor, btnTracking;
 
