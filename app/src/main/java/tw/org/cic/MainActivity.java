@@ -1,4 +1,4 @@
-package tw.org.cic.morsensor_mobile;
+package tw.org.cic;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import tw.org.cic.morsensor_mobile.MainViewActivity;
+import tw.org.cic.morsensor_mobile.R;
 import tw.org.cic.tracking_mobile.TrackingMainViewActivity;
 
 public class MainActivity extends Activity {
@@ -41,18 +43,6 @@ public class MainActivity extends Activity {
         );
 
 
-    }
-
-    public void enterToMainViewActivity(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, MainViewActivity.class);
-        startActivity(intent);
-    }
-
-    public void enterToTrackingMainViewActivity(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, TrackingMainViewActivity.class);
-        startActivity(intent);
     }
 
 }

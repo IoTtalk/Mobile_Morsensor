@@ -20,6 +20,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.webkit.WebView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -27,6 +28,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import tw.org.cic.WebViewActivity;
 import tw.org.cic.morsensor_mobile.R;
 
 import static tw.org.cic.tracking_mobile.TrackingMainViewActivity.settings;
@@ -57,6 +59,8 @@ public class TrackingService extends Service {
     Notification.Builder builder;
     int NOTIFICATION_ID = 1;
     Notification notification;
+
+    WebView mapWebView;
 
     @Nullable
     @Override
@@ -158,8 +162,8 @@ public class TrackingService extends Service {
         timeNotificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         timePendingIntent = PendingIntent.getActivity(this, 0, timeNotificationIntent, 0);
 
-        Intent deleteIntent = new Intent(this, TrackingBroadcastReceiver.class);
-        PendingIntent deletePendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 0, deleteIntent, 0);
+        /*Intent deleteIntent = new Intent(this, TrackingBroadcastReceiver.class);
+        PendingIntent deletePendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 0, deleteIntent, 0);*/
 
         timeBuilder = new Notification.Builder(this)
                 .setSmallIcon(R.mipmap.iottalk_icon)
@@ -171,7 +175,7 @@ public class TrackingService extends Service {
                 .setContentIntent(timePendingIntent)
                 .setAutoCancel(true);
 
-        timeBuilder.setDeleteIntent(deletePendingIntent);
+//        timeBuilder.setDeleteIntent(deletePendingIntent);
 
 
         Thread thread = new Thread(new Runnable() {
@@ -273,8 +277,11 @@ public class TrackingService extends Service {
         thread.start();
 
         if(!isWebOpen) {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp));
-            startActivity(browserIntent);
+            Intent webViewIntent = new Intent(this, WebViewActivity.class);
+            webViewIntent.putExtra("url", "https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp);
+            startActivity(webViewIntent);
+            /*Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp));
+            startActivity(browserIntent);*/
             isWebOpen = true;
         }
     }

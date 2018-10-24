@@ -54,7 +54,9 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import tw.org.cic.WebViewActivity;
 import tw.org.cic.morsensor_mobile.R;
+
 
 public class TrackingMainViewActivity extends Activity /*implements LocationListener*/ {
     static SharedPreferences settings;
@@ -62,6 +64,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     static final String STATE_NAME = "trackingName";
     static final String STATE_TIME = "trackingTime";
     static final String STATE_TRACK = "trackingStatus";
+    static final String MAP_URL = "mapUrl";
     public static final String FIRST_RUN = "first";
     private boolean first;
 
@@ -69,16 +72,14 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
 
     boolean isTrackingStart = false;
 
-    String urlAdress = "https://"+TrackingConfig.trackingHost+"/secure/_set_tracking_id";
+    String openMapUrl = TrackingConfig.mapURL;
+    String setIdUrlAddress = "https://"+TrackingConfig.trackingHost+"/secure/_set_tracking_id";
 
     EditText name;
 
+    Button btnMapOpen;
     Button btnTrackStart;
-    private LocationManager locationMgr;
-    private String prov;
-    private Criteria criteria = new Criteria();
-    HandlerThread mLocationHandlerThread = null;
-    Looper mLocationHandlerLooper = null;
+
     private BroadcastReceiver broadcastReceiver;
     private BroadcastReceiver trackStatusBroadcastReceiver;
     private static final int REQUEST_CHECK_SETTINGS = 0x1;
@@ -101,6 +102,18 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         context = this;
 
         setContentView(R.layout.activity_tracking_main_view);
+
+        btnMapOpen = (Button) findViewById(R.id.openMap);
+        btnMapOpen.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent webViewIntent = new Intent(getApplicationContext(), WebViewActivity.class);
+                        webViewIntent.putExtra("url", openMapUrl);
+                        startActivity(webViewIntent);
+                    }
+                }
+        );
 
         name = (EditText) findViewById(R.id.inputName);
 
@@ -167,6 +180,8 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                     isTrackingStart = Boolean.valueOf(intent.getExtras().get("trackingStatus").toString());
                     Log.v("onResume", String.valueOf(isTrackingStart));
                     if(isTrackingStart == false) {
+                        openMapUrl = TrackingConfig.mapURL;
+
                         new Handler(Looper.getMainLooper()).post(new Runnable(){
                             @Override
                             public void run() {
@@ -186,6 +201,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 .putString(STATE_TIME, sel)
                 .putBoolean(STATE_TRACK, isTrackingStart)
                 .putBoolean(FIRST_RUN, false)
+                .putString(MAP_URL, openMapUrl)
                 .commit();
 
         Log.v("saveData", "saveData----------------------------------------------------------------------------------");
@@ -201,6 +217,8 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         spnTimeSelector.setSelection(selectionPosition);
 
         isTrackingStart = settings.getBoolean(STATE_TRACK, false);
+
+        openMapUrl = settings.getString(MAP_URL, TrackingConfig.mapURL);
 
         Log.v("readData", "isTrackingStart: "+isTrackingStart);
         setTrackingBtnView();
@@ -243,10 +261,13 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         return true;
     }
 
+
     private void stopTrackingService() {
         Intent i = new Intent(getApplicationContext(), TrackingService.class);
         stopService(i);
         setTrackingStartBtn();
+
+        openMapUrl = TrackingConfig.mapURL;
     }
 
     private void startTrackingService(String trackingName, String trackingId, String trackingApp) {
@@ -265,6 +286,8 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         }
 
         setTrackingStartBtn();
+
+        openMapUrl = TrackingConfig.mapURL+"?name="+trackingName+"&app="+trackingApp;
     }
 
     public void setTrackingBtnView() {
@@ -332,7 +355,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 int resCode;
                 InputStream in;
                 try {
-                    URL url = new URL(urlAdress+"?app=HumanTracking&name="+trackingName);
+                    URL url = new URL(setIdUrlAddress+"?app=HumanTracking&name="+trackingName);
                     Log.i("set_tracking_id", url.toString());
                     HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
                     conn.setAllowUserInteraction(false);
