@@ -17,6 +17,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION" />
 
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -74,7 +77,7 @@
         <receiver android:name="tw.org.cic.tracking_mobile.TrackingBroadcastReceiver" >
         </receiver>
 
-        <activity android:name="tw.org.cic.WebViewActivity" />
+        <activity android:name="tw.org.cic.tracking_mobile.WebViewActivity" />
 
         <service android:name="tw.org.cic.morsensor_mobile.Mainservice" />
         <service android:name="tw.org.cic.tracking_mobile.TrackingService" />

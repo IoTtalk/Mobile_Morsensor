@@ -11,14 +11,11 @@ import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -54,7 +51,6 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import tw.org.cic.WebViewActivity;
 import tw.org.cic.morsensor_mobile.R;
 
 
@@ -461,7 +457,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
 
 
     protected void runtime_permissions(/*final Callable<Boolean> SuccessCB*/) {
-        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, TrackingConfig.MY_PERMISSIONS_REQUEST_LOCATION);
     }
 
     @Override
@@ -486,7 +482,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.v("onRequestPermissions", "onRequestPermissionsResult");
-        if(requestCode == 100){
+        if(requestCode == TrackingConfig.MY_PERMISSIONS_REQUEST_LOCATION){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 Log.v("onRequestPermissions", "runtime_permissions if");
                 gps_permissions();
