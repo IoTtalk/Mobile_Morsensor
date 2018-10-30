@@ -37,10 +37,6 @@ public class TrackingService extends Service {
     private int trackingApp;
     private boolean isWebOpen = false;
 
-    private LocationListener listener;
-    private LocationManager locationManager;
-    private NotificationManager notificationManager;
-    private NotificationChannel channelLove;
     private String ANDROID_CHANNEL_ID = "1";
     private String CHANNEL_ID = "Tracking";
 
@@ -57,7 +53,13 @@ public class TrackingService extends Service {
     int NOTIFICATION_ID = 1;
     Notification notification;
 
-    WebView mapWebView;
+    private boolean isFirstLoc = true;
+    private long timeStamp; // millis
+    private double latitude; // degree
+    private double longitude; // degree
+    private float variance = -1; // P matrix. Initial estimate of error
+
+
 
     @Nullable
     @Override
@@ -139,7 +141,7 @@ public class TrackingService extends Service {
                 }
 
                 for (Location location : locationResult.getLocations()) {
-                    Log.v("LocationCallback", String.valueOf(location) + "\n" + location.getAccuracy());
+                    Log.v("LocationCallback", String.valueOf(location) + "\n" + location.getAccuracy() + "\n" + location.getSpeed());
                     if(location.getAccuracy() >= 50) {
                         reStartLocationUpdate();
                         return;
@@ -192,6 +194,38 @@ public class TrackingService extends Service {
         super.onDestroy();
         stopLocationUpdates();
         Log.v("onDestroy", "onDestroy");
+    }
+
+    public void kalmanFilter(float newSpeed, double newLatitude, double newLongitude, long newTimeStamp, float newAccuracy) {
+        // Uncomment this, if you are receiving accuracy from your gps
+         if (newAccuracy < 1) {
+              newAccuracy = 1;
+         }
+        if (variance < 0) {
+            // if variance < 0, object is unitialised, so initialise with current values
+            latitude = newLatitude;
+            longitude = newLongitude;
+            timeStamp = newTimeStamp;
+            variance = newAccuracy * newAccuracy;
+        } else {
+            // else apply Kalman filter
+            long duration = newTimeStamp - timeStamp;
+            if (duration > 0) {
+                // time has moved on, so the uncertainty in the current position increases
+                variance += duration * newSpeed * newSpeed / 1000;
+                timeStamp = newTimeStamp;
+            }
+
+            // Kalman gain matrix 'k' = Covariance * Inverse(Covariance + MeasurementVariance)
+            // because 'k' is dimensionless,
+            // it doesn't matter that variance has different units to latitude and longitude
+            float k = variance / (variance + newAccuracy * newAccuracy);
+            // apply 'k'
+            latitude += k * (newLatitude - latitude);
+            longitude += k * (newLongitude - longitude);
+            // new Covariance matrix is (IdentityMatrix - k) * Covariance
+            variance = (1 - k) * variance;
+        }
     }
 
 
@@ -258,16 +292,29 @@ public class TrackingService extends Service {
         }
     }
 
-    private void setCurrentLocation(final Location location) {
+    private void setCurrentLocation(Location location) {
+//        kalmanFilter(location.getSpeed(), location.getLatitude(), location.getLongitude(), location.getTime(), location.getAccuracy());
+
+        if(isFirstLoc) {
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            isFirstLoc = false;
+        }
+
+        if(location.getSpeed() > 0.6) {
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+        }
+
         Intent i = new Intent("location_update");
-        i.putExtra("coordinates", location.getLatitude() + " " + location.getLongitude());
+        i.putExtra("coordinates", location.getSpeed() + ", " + location.getAccuracy() +", "+location.getAltitude());
         sendBroadcast(i);
-        Log.v("onchange", location.getProvider()+" "+Double.toString(location.getLatitude())+" "+Double.toString(location.getLongitude()));
+        Log.v("onchange", location.getProvider()+" "+Double.toString(latitude)+" "+Double.toString(longitude));
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
                 //code to do the HTTP request
-                TrackingDAI.push(location.getLatitude(), location.getLongitude(), trackingName, trackingId, getCurrentLocalDateTimeStamp());
+                TrackingDAI.push(latitude, longitude, trackingName, trackingId, getCurrentLocalDateTimeStamp());
                 Log.v("Thread", "TrackingDAI.GeoData finish");
             }
         });

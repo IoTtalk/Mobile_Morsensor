@@ -72,7 +72,8 @@
         <receiver android:name="tw.org.cic.tracking_mobile.TrackingBroadcastReceiver">
         </receiver>
 
-        <activity android:name="tw.org.cic.tracking_mobile.WebViewActivity"/>
+        <activity android:name="tw.org.cic.tracking_mobile.WebViewActivity"
+                  android:configChanges="orientation|keyboardHidden|screenSize"/>
 
 
 

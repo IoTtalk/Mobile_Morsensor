@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-84:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-84:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-84:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-84:12
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
 MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\934d7585ea1df43195b7c5020d2d98a8\AndroidManifest.xml:2:1-9:12
@@ -19,9 +19,9 @@ MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.grad
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-84:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-84:12
-INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-84:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
 	package
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:3:5-42
 		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
@@ -103,7 +103,7 @@ ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\Android
 	android:name
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:26:19-59
 application
-ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:28:5-82:19
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:28:5-83:19
 MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:22:5-20
@@ -203,17 +203,19 @@ ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\Android
 	android:name
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:72:19-86
 activity#tw.org.cic.tracking_mobile.WebViewActivity
-ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:75:9-78
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:75:9-76:82
+	android:configChanges
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:76:19-80
 	android:name
 		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:75:19-76
 service#tw.org.cic.morsensor_mobile.Mainservice
-ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:79:9-47
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:80:9-47
 	android:name
-		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:79:18-45
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:80:18-45
 service#tw.org.cic.tracking_mobile.TrackingService
-ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:80:9-77
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:81:9-77
 	android:name
-		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:80:18-75
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:81:18-75
 uses-sdk
 INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml

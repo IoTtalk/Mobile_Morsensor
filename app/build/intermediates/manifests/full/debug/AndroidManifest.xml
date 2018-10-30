@@ -77,7 +77,9 @@
         <receiver android:name="tw.org.cic.tracking_mobile.TrackingBroadcastReceiver" >
         </receiver>
 
-        <activity android:name="tw.org.cic.tracking_mobile.WebViewActivity" />
+        <activity
+            android:name="tw.org.cic.tracking_mobile.WebViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <service android:name="tw.org.cic.morsensor_mobile.Mainservice" />
         <service android:name="tw.org.cic.tracking_mobile.TrackingService" />
