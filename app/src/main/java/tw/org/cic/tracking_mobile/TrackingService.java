@@ -59,7 +59,7 @@ public class TrackingService extends Service {
     private double longitude; // degree
     private float variance = -1; // P matrix. Initial estimate of error
 
-
+    private Thread timeThread;
 
     @Nullable
     @Override
@@ -193,6 +193,7 @@ public class TrackingService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stopLocationUpdates();
+        timeThread.interrupt();
         Log.v("onDestroy", "onDestroy");
     }
 
@@ -233,13 +234,13 @@ public class TrackingService extends Service {
     private void setTrackingTime() {
         if(isNumeric(trackingTime)) {
             final int timer = Integer.parseInt(trackingTime);
-            Thread timeThread = new Thread(new Runnable() {
+            timeThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 //code to do the HTTP request
                 try{
                     Log.v("timeThread", "timeThread start " + timer);
-                    Thread.sleep(timer*1000);
+                    Thread.sleep(timer*1000*60);
 
                     // notificationId is a unique int for each notification that you must define
                     timeNotificationManager.notify(TIME_NOTIFICATION_ID, timeBuilder.build());
@@ -266,6 +267,7 @@ public class TrackingService extends Service {
 
                 }catch(InterruptedException e){
                     e.printStackTrace();
+                    return;
                 }
             }
         });
@@ -323,6 +325,7 @@ public class TrackingService extends Service {
         if(!isWebOpen) {
             Intent webViewIntent = new Intent(this, WebViewActivity.class);
             webViewIntent.putExtra("url", "https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp);
+            Log.v("isWebOpen", "https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp);
             startActivity(webViewIntent);
             /*Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp));
             startActivity(browserIntent);*/

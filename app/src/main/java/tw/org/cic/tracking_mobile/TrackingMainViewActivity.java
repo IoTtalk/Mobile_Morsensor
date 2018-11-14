@@ -163,7 +163,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     Log.v("onResume", intent.getExtras().get("coordinates").toString());
-                    ((TextView)findViewById(R.id.tv_lng)).setText(intent.getExtras().get("coordinates").toString());
+//                    ((TextView)findViewById(R.id.tv_lng)).setText(intent.getExtras().get("coordinates").toString());
                 }
             };
         }
@@ -333,9 +333,12 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
 
     private void get_tracking_name() {
         String trackingName = name.getText().toString();
+        String tmp;
         Log.v("get_tracking_name", trackingName);
-        if(trackingName.equals("")) {
-            name.setError("Field cannot be left blank.");
+        tmp = trackingName.replaceAll("[\\s]", "");
+
+        if(!trackingName.equals(tmp)) {
+            name.setError("Invalid character");
         }
         else {
             Log.v("get_tracking_name", trackingName + "go to set_tracking_id");

@@ -1,4 +1,4 @@
-#Tue Oct 30 11:26:34 CST 2018
+#Thu Nov 08 16:36:11 CST 2018
 path.3=classes.dex
 path.2=classes.dex
 path.1=classes.dex
@@ -7,7 +7,7 @@ renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-base.3=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\46
-base.2=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\47
-base.1=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\45
-base.0=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\48
+base.3=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\81
+base.2=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\80
+base.1=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\82
+base.0=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\79

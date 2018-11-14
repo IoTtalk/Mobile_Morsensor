@@ -1,0 +1,300 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\934d7585ea1df43195b7c5020d2d98a8\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\bd91ae6a53986d58b8ad5ba89a1c1e90\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\fcf94658f43a079896d1f61ee85b0f0e\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\0c970d79c1a122c5202fb895c6a15c1e\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:17:1-30:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:1-85:12
+	package
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:3:5-42
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:6:5-32
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:5:5-28
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+	android:installLocation
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:4:5-43
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:8:5-67
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:8:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:9:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:10:5-76
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:10:22-73
+uses-permission#android.permission.WAKE_LOCK
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:11:5-68
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:11:22-65
+uses-permission#android.permission.VIBRATE
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:12:5-66
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:12:22-63
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:13:5-81
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:13:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:14:5-79
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:14:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:15:5-81
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:15:22-78
+uses-permission#android.permission.ACCESS_GPS
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:16:5-69
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:16:22-66
+uses-permission#android.permission.ACCESS_ASSISTED_GPS
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:17:5-78
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:17:22-75
+uses-permission#android.permission.ACCESS_LOCATION
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:18:5-74
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:18:22-71
+uses-permission-sdk-23#android.permission.ACCESS_COARSE_LOCATION
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:20:5-88
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:20:29-85
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:22:5-80
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:22:22-77
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:23:5-75
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:23:22-72
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:25:5-81
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:25:22-78
+uses-feature#android.hardware.usb.host
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:26:5-62
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:26:19-59
+application
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:28:5-83:19
+MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\934d7585ea1df43195b7c5020d2d98a8\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\934d7585ea1df43195b7c5020d2d98a8\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\bd91ae6a53986d58b8ad5ba89a1c1e90\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\bd91ae6a53986d58b8ad5ba89a1c1e90\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\fcf94658f43a079896d1f61ee85b0f0e\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\fcf94658f43a079896d1f61ee85b0f0e\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\0c970d79c1a122c5202fb895c6a15c1e\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\0c970d79c1a122c5202fb895c6a15c1e\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:24:5-28:19
+	android:label
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:32:9-41
+	android:hardwareAccelerated
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:30:9-43
+	android:largeHeap
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:33:9-33
+	android:icon
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:31:9-44
+	android:allowBackup
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:29:9-35
+	android:theme
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:34:9-65
+activity#tw.org.cic.morsensor_mobile.MainViewActivity
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:36:9-60:20
+	android:screenOrientation
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:38:13-49
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:37:13-45
+intent-filter#action:name:android.hardware.usb.action.USB_DEVICE_ATTACHED
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:39:13-41:29
+action#android.hardware.usb.action.USB_DEVICE_ATTACHED
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:40:17-90
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:40:25-87
+meta-data#android.hardware.usb.action.USB_DEVICE_ATTACHED
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:42:13-44:57
+	android:resource
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:44:17-54
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:43:17-79
+intent-filter#action:name:android.intent.action.MAIN
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:45:13-49:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:46:17-69
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:46:25-66
+intent-filter#action:name:android.hardware.usb.action.USB_DEVICE_ATTACHED+action:name:android.nfc.action.NDEF_DISCOVERED+category:name:android.intent.category.DEFAULT+data:mimeType:text/plain
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:50:13-57:29
+action#android.nfc.action.NDEF_DISCOVERED
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:52:17-77
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:52:25-74
+category#android.intent.category.DEFAULT
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:54:17-76
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:54:27-73
+data
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:56:17-55
+	android:mimeType
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:56:23-52
+activity#tw.org.cic.MainActivity
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:62:9-67:20
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:62:19-57
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:63:13-66:29
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:65:17-77
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:65:27-74
+activity#tw.org.cic.tracking_mobile.TrackingMainViewActivity
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:69:9-70:20
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:69:19-85
+receiver#tw.org.cic.tracking_mobile.TrackingBroadcastReceiver
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:72:9-73:20
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:72:19-86
+activity#tw.org.cic.tracking_mobile.WebViewActivity
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:75:9-76:82
+	android:configChanges
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:76:19-80
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:75:19-76
+service#tw.org.cic.morsensor_mobile.Mainservice
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:80:9-47
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:80:18-45
+service#tw.org.cic.tracking_mobile.TrackingService
+ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:81:9-77
+	android:name
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml:81:18-75
+uses-sdk
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\design-22.2.0.aar\3d958f6acb20d0ad5463c6d6aedec392\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:22.2.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-22.2.0.aar\27fa14f0bab73bacc58924b7bf6f68de\AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\934d7585ea1df43195b7c5020d2d98a8\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-location-16.0.0.aar\934d7585ea1df43195b7c5020d2d98a8\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\bd91ae6a53986d58b8ad5ba89a1c1e90\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-places-placereport-16.0.0.aar\bd91ae6a53986d58b8ad5ba89a1c1e90\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\fcf94658f43a079896d1f61ee85b0f0e\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-tasks-16.0.1.aar\fcf94658f43a079896d1f61ee85b0f0e\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\0c970d79c1a122c5202fb895c6a15c1e\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\0c970d79c1a122c5202fb895c6a15c1e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\f0b52fa2db2b6e009b965c76b7f48a96\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\src\main\AndroidManifest.xml
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-base-16.0.1.aar\148f82678f72c46062bd93e56956ac1f\AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\0c970d79c1a122c5202fb895c6a15c1e\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\0c970d79c1a122c5202fb895c6a15c1e\AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:16.0.1] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\play-services-basement-16.0.1.aar\0c970d79c1a122c5202fb895c6a15c1e\AndroidManifest.xml:24:13-58
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\27e992800995a6009f788a722a4ac415\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\9aa3cdb83b4335ea35469565ef61e755\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\4de3349e5b90d68211ee60b5512f0fc1\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\96474910c1f9a11d49ebb65023558839\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\07cd976a1be1ed44ecaeff7196d7db40\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\5c8235686f9b74f85105d62904c866e1\AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Cindy\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\b71e1980d1085d9f6de38a1eb7d2c13a\AndroidManifest.xml:26:13-58
