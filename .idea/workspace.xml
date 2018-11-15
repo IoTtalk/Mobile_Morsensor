@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="get_tracking_name" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="WebViewActivity" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -33,13 +33,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TrackingService.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TrackingService.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="206" column="35" lean-forward="false" selection-start-line="206" selection-start-column="35" selection-end-line="206" selection-end-column="35" />
+            <state relative-caret-position="800">
+              <caret line="32" column="46" lean-forward="true" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2442#2470#0" expanded="true" />
+                <element signature="e#2777#2805#0" expanded="true" />
+                <element signature="e#4644#5181#0" expanded="true" />
+                <element signature="e#5180#5181#0" expanded="true" />
+                <element signature="e#5213#5944#0" expanded="true" />
+                <element signature="e#5943#5944#0" expanded="true" />
+                <element signature="e#7112#7348#0" expanded="true" />
+                <element signature="e#7347#7348#0" expanded="true" />
+                <element signature="e#9224#10585#0" expanded="true" />
+                <element signature="e#10584#10585#0" expanded="true" />
+                <element signature="e#12521#12835#0" expanded="true" />
+                <element signature="e#12834#12835#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -48,36 +60,13 @@
       <file leaf-file-name="WebViewActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/WebViewActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
+            <state relative-caret-position="351">
+              <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2366#2594#0" expanded="true" />
+                <element signature="e#2593#2594#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrackingCSMapi.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingCSMapi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
-              <folding>
-                <element signature="method#register#0;class#TrackingCSMapi#0" expanded="false" />
-                <element signature="method#deregister#0;class#TrackingCSMapi#0" expanded="false" />
-                <element signature="method#pull#0;class#TrackingCSMapi#0" expanded="false" />
-                <element signature="method#tree#0;class#TrackingCSMapi#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrackingConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -85,7 +74,7 @@
       <file leaf-file-name="webview.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/webview.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
+            <state relative-caret-position="187">
               <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
               <folding />
             </state>
@@ -98,7 +87,7 @@
       <file leaf-file-name="activity_tracking_main_view.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tracking_main_view.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3100">
+            <state relative-caret-position="329">
               <caret line="124" column="4" lean-forward="false" selection-start-line="124" selection-start-column="4" selection-end-line="124" selection-end-column="17" />
               <folding />
             </state>
@@ -108,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrackingMainViewActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TrackingMainViewActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingMainViewActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="348" column="60" lean-forward="true" selection-start-line="348" selection-start-column="60" selection-end-line="348" selection-end-column="60" />
+            <state relative-caret-position="130">
+              <caret line="226" column="35" lean-forward="false" selection-start-line="226" selection-start-column="15" selection-end-line="226" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,10 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>iswebopen</find>
-      <find>put</find>
-      <find>urlAdress</find>
-      <find>urladress</find>
       <find>URL</find>
       <find>isweb</find>
       <find>broa</find>
@@ -164,6 +149,10 @@
       <find>startLocationUpdates</find>
       <find>trackingName</find>
       <find>startTrackingService</find>
+      <find>addView</find>
+      <find>TrackingDAI</find>
+      <find>loadUrl</find>
+      <find>set_tracking_id</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -2205,14 +2194,14 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/index.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/WebViewActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/WebViewActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_tracking_main_view.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/webview.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingConfig.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TestService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingMainViewActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/WebViewActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingService.java" />
       </list>
     </option>
   </component>
@@ -2512,15 +2501,16 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.390642" sideWeight="0.078891255" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28464818" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297062" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3101197" sideWeight="0.9211087" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47878128" sideWeight="0.9211087" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15298508" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49183896" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27312297" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2533,7 +2523,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28517398" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -2585,6 +2574,8 @@
           <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2366#2594#0" expanded="true" />
+            <element signature="e#2593#2594#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2681,6 +2672,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3050">
           <caret line="133" column="59" lean-forward="true" selection-start-line="133" selection-start-column="59" selection-end-line="133" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2688,6 +2680,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3764">
           <caret line="33" column="41" lean-forward="false" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2849,14 +2842,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="13" column="44" lean-forward="false" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/iottalk_icon.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -2882,60 +2867,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="74" column="75" lean-forward="false" selection-start-line="74" selection-start-column="75" selection-end-line="74" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tracking_main_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3100">
-          <caret line="124" column="4" lean-forward="false" selection-start-line="124" selection-start-column="4" selection-end-line="124" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/webview.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingCSMapi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
-          <folding>
-            <element signature="method#register#0;class#TrackingCSMapi#0" expanded="false" />
-            <element signature="method#deregister#0;class#TrackingCSMapi#0" expanded="false" />
-            <element signature="method#pull#0;class#TrackingCSMapi#0" expanded="false" />
-            <element signature="method#tree#0;class#TrackingCSMapi#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingDAI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-875">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingDAN.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -2950,21 +2881,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
+        <state relative-caret-position="179">
           <caret line="124" column="62" lean-forward="true" selection-start-line="124" selection-start-column="62" selection-end-line="124" selection-end-column="62" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2438#2466#0" expanded="false" />
-            <element signature="e#2773#2801#0" expanded="false" />
-            <element signature="e#7112#7348#0" expanded="false" />
-            <element signature="e#7347#7348#0" expanded="false" />
             <element signature="method#kalmanFilter#0;class#TestService#0" expanded="false" />
             <element signature="method#setTrackingTime#0;class#TestService#0" expanded="false" />
-            <element signature="e#9220#10685#0" expanded="false" />
-            <element signature="e#10684#10685#0" expanded="false" />
-            <element signature="e#12625#12939#0" expanded="false" />
-            <element signature="e#12938#12939#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1850">
+          <caret line="74" column="75" lean-forward="false" selection-start-line="74" selection-start-column="75" selection-end-line="74" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingCSMapi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="136" column="9" lean-forward="true" selection-start-line="136" selection-start-column="9" selection-end-line="136" selection-end-column="9" />
+          <folding>
+            <element signature="method#register#0;class#TrackingCSMapi#0" expanded="false" />
+            <element signature="method#deregister#0;class#TrackingCSMapi#0" expanded="false" />
+            <element signature="method#pull#0;class#TrackingCSMapi#0" expanded="false" />
+            <element signature="method#tree#0;class#TrackingCSMapi#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingDAI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1175">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2976,32 +2930,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingService.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/webview.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="206" column="35" lean-forward="false" selection-start-line="206" selection-start-column="35" selection-end-line="206" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="10" column="12" lean-forward="false" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tracking_main_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="124" column="4" lean-forward="false" selection-start-line="124" selection-start-column="4" selection-end-line="124" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/WebViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="60" column="48" lean-forward="false" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
+        <state relative-caret-position="351">
+          <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2366#2594#0" expanded="true" />
+            <element signature="e#2593#2594#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingMainViewActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="348" column="60" lean-forward="true" selection-start-line="348" selection-start-column="60" selection-end-line="348" selection-end-column="60" />
+        <state relative-caret-position="130">
+          <caret line="226" column="35" lean-forward="false" selection-start-line="226" selection-start-column="15" selection-end-line="226" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/tw/org/cic/tracking_mobile/TrackingService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="32" column="46" lean-forward="true" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2442#2470#0" expanded="true" />
+            <element signature="e#2777#2805#0" expanded="true" />
+            <element signature="e#4644#5181#0" expanded="true" />
+            <element signature="e#5180#5181#0" expanded="true" />
+            <element signature="e#5213#5944#0" expanded="true" />
+            <element signature="e#5943#5944#0" expanded="true" />
+            <element signature="e#7112#7348#0" expanded="true" />
+            <element signature="e#7347#7348#0" expanded="true" />
+            <element signature="e#9224#10585#0" expanded="true" />
+            <element signature="e#10584#10585#0" expanded="true" />
+            <element signature="e#12521#12835#0" expanded="true" />
+            <element signature="e#12834#12835#0" expanded="true" />
           </folding>
         </state>
       </provider>

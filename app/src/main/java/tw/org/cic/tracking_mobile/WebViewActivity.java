@@ -9,6 +9,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -123,28 +125,45 @@ public class WebViewActivity extends Activity {
 
     @Override
     protected void onDestroy() {
+        destroy_webview();
         super.onDestroy();
         Log.v("WebViewActivity", "onDestroy");
-        webView.clearCache(true);
 
-        // Loading a blank page is optional, but will ensure that the WebView isn't doing anything when you destroy it.
-        webView.loadUrl("about:blank");
+    }
 
-        webView.onPause();
-        webView.removeAllViews();
-        webView.destroyDrawingCache();
+    public void destroy_webview() {
+        if(webView != null) {
+            Log.v("WebViewActivity", "destroy_webview");
+            webView.clearCache(true);
 
-        // NOTE: This pauses JavaScript execution for ALL WebViews,
-        // do not use if you have other WebViews still alive.
-        // If you create another WebView after calling this,
-        // make sure to call mWebView.resumeTimers().
-        webView.pauseTimers();
+            // Loading a blank page is optional, but will ensure that the WebView isn't doing anything when you destroy it.
+            webView.loadUrl("about:blank");
 
-        // NOTE: This can occasionally cause a segfault below API 17 (4.2)
-        webView.destroy();
 
-        // Null out the reference so that you don't end up re-using it.
-        webView = null;
+            ViewParent parent = webView.getParent();
+            if (parent != null) {
+                ((ViewGroup) parent).removeView(webView);
+            }
+
+            webView.stopLoading();
+            webView.getSettings().setJavaScriptEnabled(false);
+            webView.clearHistory();
+            webView.onPause();
+            webView.removeAllViews();
+            webView.destroyDrawingCache();
+
+            // NOTE: This pauses JavaScript execution for ALL WebViews,
+            // do not use if you have other WebViews still alive.
+            // If you create another WebView after calling this,
+            // make sure to call mWebView.resumeTimers().
+            webView.pauseTimers();
+
+            // NOTE: This can occasionally cause a segfault below API 17 (4.2)
+            webView.destroy();
+
+            // Null out the reference so that you don't end up re-using it.
+            webView = null;
+        }
     }
 
     @Override
