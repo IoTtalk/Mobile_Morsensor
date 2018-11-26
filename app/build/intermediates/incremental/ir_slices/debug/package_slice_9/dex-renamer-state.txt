@@ -1,4 +1,4 @@
-#Thu Nov 08 16:36:11 CST 2018
-base.0=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\77
+#Fri Nov 16 21:01:00 CST 2018
+base.0=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\94
 path.0=classes.dex
 renamed.0=classes.dex

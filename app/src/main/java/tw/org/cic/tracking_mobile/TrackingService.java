@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -323,12 +324,12 @@ public class TrackingService extends Service {
         thread.start();
 
         if(!isWebOpen) {
-            Intent webViewIntent = new Intent(this, WebViewActivity.class);
+            /*Intent webViewIntent = new Intent(this, WebViewActivity.class);
             webViewIntent.putExtra("url", "https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp);
             Log.v("isWebOpen", "https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp);
-            startActivity(webViewIntent);
-            /*Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp));
-            startActivity(browserIntent);*/
+            startActivity(webViewIntent);*/
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp));
+            startActivity(browserIntent);
             isWebOpen = true;
         }
     }

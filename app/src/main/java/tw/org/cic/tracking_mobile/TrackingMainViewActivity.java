@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -104,9 +105,11 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent webViewIntent = new Intent(getApplicationContext(), WebViewActivity.class);
+                        /*Intent webViewIntent = new Intent(getApplicationContext(), WebViewActivity.class);
                         webViewIntent.putExtra("url", openMapUrl);
-                        startActivity(webViewIntent);
+                        startActivity(webViewIntent);*/
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openMapUrl));
+                        startActivity(browserIntent);
                     }
                 }
         );
@@ -338,7 +341,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         tmp = trackingName.replaceAll("[\\s]", "");
 
         if(!trackingName.equals(tmp)) {
-            name.setError("Invalid character");
+            name.setError("Sorry! Only accept character, digits and decimal point.");
         }
         else {
             Log.v("get_tracking_name", trackingName + "go to set_tracking_id");
