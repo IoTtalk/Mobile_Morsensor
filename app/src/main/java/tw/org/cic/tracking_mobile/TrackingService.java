@@ -194,7 +194,8 @@ public class TrackingService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stopLocationUpdates();
-        timeThread.interrupt();
+        if(timeThread != null)
+            timeThread.interrupt();
         Log.v("onDestroy", "onDestroy");
     }
 
