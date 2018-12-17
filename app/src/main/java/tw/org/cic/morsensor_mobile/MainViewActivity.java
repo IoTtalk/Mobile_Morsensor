@@ -50,6 +50,7 @@ public class MainViewActivity extends Activity {
 
         Intent intent = new Intent(MainViewActivity.this, Mainservice.class);
         startService(intent);
+        finish();
 
     }
 

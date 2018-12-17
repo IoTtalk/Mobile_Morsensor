@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/leonachang/Desktop/Mor-act-ser/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v14/values-v14.xml",
+            "outputFile": "D:\\Mobile_Morsensor\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
             "map": [
                 {
-                    "source": "/Users/leonachang/Desktop/Mor-act-ser/app/src/main/res/values-v14/styles.xml",
+                    "source": "D:\\Mobile_Morsensor\\app\\src\\main\\res\\values-v14\\styles.xml",
                     "from": {
                         "startLines": "7",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/leonachang/.gradle/caches/transforms-1/files-1.1/appcompat-v7-22.2.0.aar/61579330c2f992eb5f90df4c7abc73d1/res/values-v14/values-v14.xml",
+                    "source": "C:\\Users\\snmcatrut\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-22.2.0.aar\\21b8966db5a7d29d1f5dde4cda8273e9\\res\\values-v14\\values-v14.xml",
                     "from": {
                         "startLines": "4,11,12,13,19,27,28,29,32,33",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
