@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Base64;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,7 +18,7 @@ import org.json.JSONObject;
 
 public class TrackingCSMapi {
     static private String log_tag = "MorSensor";
-    static public String ENDPOINT = "http://"+TrackingConfig.trackingHost+":9999";
+    static public String ENDPOINT = "https://"+TrackingConfig.trackingHost;
 
     public static class CSMError extends Exception {
         String msg;
@@ -161,11 +162,15 @@ public class TrackingCSMapi {
                 URL url = new URL(url_str);
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 connection.setRequestMethod(method);
+                String userCredentials = "password-key:"+TrackingConfig.trackingPWD;
+                String basicAuth = "Basic " + new String(Base64.getEncoder().encode(userCredentials.getBytes()));
+
+                connection.setRequestProperty ("Authorization", basicAuth);
 
                 if (method.equals("POST") || method.equals("PUT")) {
                     connection.setDoOutput(true);	// needed, even if method had been set to POST
                     connection.setRequestProperty("Content-Type", "application/json");
-
+                    connection.setRequestProperty ("Authorization", basicAuth);
                     OutputStream os = connection.getOutputStream();
                     os.write(request_body.getBytes());
                 }

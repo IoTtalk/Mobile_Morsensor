@@ -71,6 +71,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
 
     String openMapUrl = TrackingConfig.mapURL;
     String setIdUrlAddress = "https://"+TrackingConfig.trackingHost+"/secure/_set_tracking_id";
+    String setPwdUrlAddress = "https://"+TrackingConfig.trackingHost+"/static/passwd_tracking";
 
     EditText name;
 
@@ -338,6 +339,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         String trackingName = name.getText().toString();
         String tmp;
         Log.v("get_tracking_name", trackingName);
+        trackingName = trackingName.trim(); //delete leading and trailing whitespace.
         tmp = trackingName.replaceAll("[\\s]", "");
 
         if(!trackingName.equals(tmp)) {
@@ -395,10 +397,63 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                         String trackingApp = jsonIdObject.getString("app_num");
                         Log.v("set_tracking_id", trackingId+" "+trackingApp);
 
+                        set_tracking_pwd();
+
                         startTrackingService(trackingName, trackingId, trackingApp);
                     }
                     else {
                         checkNetWork();
+                    }
+
+                    conn.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+    }
+
+    public void set_tracking_pwd() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String response;
+                int resCode;
+                InputStream in;
+                try {
+                    URL url = new URL(setPwdUrlAddress);
+                    Log.i("set_tracking_pwd", url.toString());
+                    HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+                    conn.setAllowUserInteraction(false);
+                    conn.setInstanceFollowRedirects(true);
+                    conn.setRequestMethod("GET");
+                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                    conn.setRequestProperty("Accept","application/json");
+                    conn.connect();
+
+
+                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+                    Log.i("MSG" , conn.getResponseMessage());
+
+                    resCode = conn.getResponseCode();
+
+                    if (resCode == HttpURLConnection.HTTP_OK) {
+                        Log.v("set_tracking_pwd", "HTTP_OK in");
+                        in = conn.getInputStream();
+
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            sb.append(line).append("\n");
+                        }
+                        in.close();
+                        response = sb.toString();
+
+                        Log.v("set_tracking_pwd", response);
+                        TrackingConfig.trackingPWD = response;
                     }
 
                     conn.disconnect();
