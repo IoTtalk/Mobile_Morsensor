@@ -1,7 +1,10 @@
 package tw.org.cic.morsensor_mobile;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -47,9 +50,10 @@ public class MainViewActivity extends Activity {
         Log.v("MainActivity", "into");
 
         //setContentView(R.layout.activity_main_view);
-
         Intent intent = new Intent(MainViewActivity.this, Mainservice.class);
         startService(intent);
+        //Toast.makeText(this, "MainView start", Toast.LENGTH_SHORT).show();
+        finish();
 
     }
 
@@ -66,5 +70,3 @@ public class MainViewActivity extends Activity {
     //mytvx.setText("hihi");
 
 }
-
-

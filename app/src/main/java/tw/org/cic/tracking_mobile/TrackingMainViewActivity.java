@@ -226,6 +226,14 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        Log.v("TrackingMainActivity", "onStop");
+
+        finish();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.v("TrackingMainActivity", "onDestroy");

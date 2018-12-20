@@ -41,7 +41,15 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <activity
             android:name="tw.org.cic.morsensor_mobile.MainViewActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity android:name="tw.org.cic.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
@@ -51,24 +59,12 @@
                 android:resource="@xml/device_filter" />
 
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:mimeType="text/plain" />
-            </intent-filter>
-        </activity>
-        <activity android:name="tw.org.cic.MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="tw.org.cic.tracking_mobile.TrackingMainViewActivity" >

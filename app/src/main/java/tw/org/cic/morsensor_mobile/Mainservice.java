@@ -2,6 +2,7 @@ package tw.org.cic.morsensor_mobile;
 
 import android.app.Activity;
 import android.app.Service;
+import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -11,6 +12,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.NotificationCompat;
 import android.text.method.HideReturnsTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
@@ -305,6 +307,7 @@ public class Mainservice extends Service{
                 }
                 //registerReceiver(usbattach,atfilter);
                 //unregisterReceiver(usbdeatach);
+                stopSelf();
             }
         };
 
@@ -318,7 +321,16 @@ public class Mainservice extends Service{
         defilter = new IntentFilter(UsbManager.ACTION_USB_DEVICE_DETACHED);
         registerReceiver(usbattach,atfilter);
         registerReceiver(usbdeatach,defilter);
-        Toast.makeText(Mainservice.this, "MainService is on create", Toast.LENGTH_SHORT).show();
+
+        Intent notificationIntent = new Intent(this, MainViewActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                notificationIntent, 0);
+        Notification notification = new NotificationCompat.Builder(this)
+                .setContentTitle("My Awesome App")
+                .setContentText("Doing some work...")
+                .setContentIntent(pendingIntent).build();
+        startForeground(1337, notification);
+        //Toast.makeText(Mainservice.this, "MainService is on create", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -366,7 +378,8 @@ public class Mainservice extends Service{
 
         checkDevceConnection();
 
-        Toast.makeText(mContext, "Service on start command----------", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, "Service on start command----------", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(mContext, "Morsensor start", Toast.LENGTH_SHORT).show();
         DLog.d(TAG, "onStartCommand----------");
 
         return START_STICKY;
@@ -375,7 +388,7 @@ public class Mainservice extends Service{
     @Override
     public void onDestroy(){
         Log.d(TAG, "--- onDestroy ---");
-        Toast.makeText(Mainservice.this, "MainService is  destroyed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Mainservice.this, "Morsensor MainService is  destroyed", Toast.LENGTH_SHORT).show();
         disconnectFunction();
         unregisterReceiver(usbattach);
         unregisterReceiver(usbdeatach);
@@ -431,6 +444,7 @@ public class Mainservice extends Service{
                     }
                 }).start();
             } else {
+                stopSelf();
             }
         } else {
             DLog.e(TAG, "checkDeviceConnection onResume - reconnect - "+ftDev.isOpen());
@@ -866,4 +880,3 @@ public class Mainservice extends Service{
     }
 
 }
-

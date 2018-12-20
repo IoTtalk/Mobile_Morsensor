@@ -35,7 +35,15 @@
 
         <activity
             android:name=".MainViewActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:screenOrientation="portrait">
+        </activity>
+
+        <activity android:name="tw.org.cic.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
@@ -43,26 +51,12 @@
                 android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
                 android:resource="@xml/device_filter" />
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:mimeType="text/plain" />
-            </intent-filter>
-
-
-        </activity>
-
-        <activity android:name="tw.org.cic.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -73,7 +67,7 @@
         </receiver>
 
         <activity android:name="tw.org.cic.tracking_mobile.WebViewActivity"
-                  android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
 
 
 

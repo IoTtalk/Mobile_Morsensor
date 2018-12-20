@@ -27,6 +27,10 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import tw.org.cic.morsensor_mobile.R;
 
 import static tw.org.cic.tracking_mobile.TrackingMainViewActivity.settings;
@@ -336,8 +340,11 @@ public class TrackingService extends Service {
     }
 
     public String getCurrentLocalDateTimeStamp() {
-        String date = String.valueOf(android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()));
-        return date;
+        //String date = String.valueOf(android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()));
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // HH是24小時制，hh是12小時制
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+8") );
+        return sdf.format(date);
     }
 
     public static boolean isNumeric(String str)
