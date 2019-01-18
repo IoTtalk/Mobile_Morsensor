@@ -5,24 +5,24 @@
     build-mode="COLD"
     density="xhdpi"
     format="10"
-    ir-eligibility="FIELD_TYPE_CHANGE"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.1.4"
-    timestamp="1545314847421"
+    timestamp="1547817426206"
     token="-4779932625721675787"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="3216" />
+        duration="728" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="227" />
+        duration="54" />
     <task
         name="verifier"
-        duration="60" />
+        duration="46" />
 
     <artifact
         location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -30,7 +30,7 @@
 
     <build
         build-mode="FULL"
-        timestamp="1545311520879"
+        timestamp="1547815467245"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
@@ -42,10 +42,10 @@
             location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\resources\instant-run\debug\resources-debug.apk"
+            location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
@@ -74,8 +74,8 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="FIELD_TYPE_CHANGE"
-        timestamp="1545314847421"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1547817426206"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Cindy\Documents\GitHub\Mobile_Morsensor\app\build\intermediates\split-apk\debug\slices\slice_4.apk"

@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -64,7 +65,7 @@ public class TrackingService extends Service {
     private double longitude; // degree
     private float variance = -1; // P matrix. Initial estimate of error
 
-    private Thread timeThread;
+    private CountDownTimer trackingTimer;
 
     @Nullable
     @Override
@@ -172,11 +173,12 @@ public class TrackingService extends Service {
         timeBuilder = new Notification.Builder(this)
                 .setSmallIcon(R.mipmap.iottalk_icon)
                 .setColor(ContextCompat.getColor(this, R.color.iottalk_icon_color))
-                .setContentTitle("Tracking End")
-                .setContentText("Please tap here if you want to track again.")
+                .setContentTitle("Tracking Remaining Time")
+                .setContentText("")
                 .setChannelId(CHANNEL_ID)
-                .setPriority(Notification.PRIORITY_MAX)
+                .setPriority(Notification.PRIORITY_MIN)
                 .setContentIntent(timePendingIntent)
+                .setOngoing(true)
                 .setAutoCancel(true);
 
 //        timeBuilder.setDeleteIntent(deletePendingIntent);
@@ -198,8 +200,14 @@ public class TrackingService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stopLocationUpdates();
-        if(timeThread != null)
-            timeThread.interrupt();
+
+        if(trackingTimer != null) {
+            trackingTimer.cancel();
+            timeNotificationManager.cancel(TIME_NOTIFICATION_ID);
+            stopForeground(true);
+            trackingTimer = null;
+        }
+
         Log.v("onDestroy", "onDestroy");
     }
 
@@ -239,18 +247,25 @@ public class TrackingService extends Service {
 
     private void setTrackingTime() {
         if(isNumeric(trackingTime)) {
-            final int timer = Integer.parseInt(trackingTime);
-            timeThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //code to do the HTTP request
-                try{
-                    Log.v("timeThread", "timeThread start " + timer);
-                    Thread.sleep(timer*1000*60);
+            final int countdownMins = Integer.parseInt(trackingTime);
+            Log.v("timeThread", "CountDownTimer start " + countdownMins);
+            trackingTimer = new CountDownTimer(countdownMins*1000*60, 1000) {
 
-                    // notificationId is a unique int for each notification that you must define
+                public void onTick(long millisUntilFinished) {
+                    long remainMins = millisUntilFinished / 1000 / 60;
+                    long remainSeconds = millisUntilFinished / 1000 - remainMins*60;
+                    Log.v("setTrackingTime", remainMins + ":" + remainSeconds);
+
+                    timeBuilder.setContentText(remainMins + ":" + remainSeconds);
                     timeNotificationManager.notify(TIME_NOTIFICATION_ID, timeBuilder.build());
+                }
 
+                public void onFinish() {
+                    // notificationId is a unique int for each notification that you must define
+                    timeBuilder.setContentTitle("Tracking End")
+                               .setContentText("Please tap here if you want to track again.")
+                               .setOngoing(false);
+                    timeNotificationManager.notify(TIME_NOTIFICATION_ID, timeBuilder.build());
                     stopForeground(false);
 
                     Boolean isTracking;
@@ -269,15 +284,14 @@ public class TrackingService extends Service {
                     i.putExtra("trackingStatus", isTracking);
                     sendBroadcast(i);
 
+                    trackingTimer = null;
                     stopSelf();
-
-                }catch(InterruptedException e){
-                    e.printStackTrace();
-                    return;
                 }
-            }
-        });
-        timeThread.start();
+
+            };
+
+            trackingTimer.start();
+
         }
     }
 
@@ -286,8 +300,8 @@ public class TrackingService extends Service {
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Tracking";
-            String description = "TrackingTest";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
+            String description = "Tracking";
+            int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
             channel.enableLights(true);
