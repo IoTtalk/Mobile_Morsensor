@@ -44,7 +44,8 @@ public class TrackingService extends Service {
     private boolean isWebOpen = false;
 
     private String ANDROID_CHANNEL_ID = "1";
-    private String CHANNEL_ID = "Tracking";
+    private String CHANNEL_ID = "TrackingNow";
+    private String CHANNEL_ID2 = "TrackingEnd";
 
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationCallback mLocationCallback;
@@ -60,10 +61,8 @@ public class TrackingService extends Service {
     Notification notification;
 
     private boolean isFirstLoc = true;
-    private long timeStamp; // millis
     private double latitude; // degree
     private double longitude; // degree
-    private float variance = -1; // P matrix. Initial estimate of error
 
     private CountDownTimer trackingTimer;
 
@@ -167,22 +166,16 @@ public class TrackingService extends Service {
         timeNotificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         timePendingIntent = PendingIntent.getActivity(this, 0, timeNotificationIntent, 0);
 
-        /*Intent deleteIntent = new Intent(this, TrackingBroadcastReceiver.class);
-        PendingIntent deletePendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), 0, deleteIntent, 0);*/
-
         timeBuilder = new Notification.Builder(this)
                 .setSmallIcon(R.mipmap.iottalk_icon)
                 .setColor(ContextCompat.getColor(this, R.color.iottalk_icon_color))
                 .setContentTitle("Tracking Remaining Time")
                 .setContentText("")
                 .setChannelId(CHANNEL_ID)
-                .setPriority(Notification.PRIORITY_MIN)
+                .setPriority(Notification.PRIORITY_MAX)
                 .setContentIntent(timePendingIntent)
                 .setOngoing(true)
                 .setAutoCancel(true);
-
-//        timeBuilder.setDeleteIntent(deletePendingIntent);
-
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -211,40 +204,6 @@ public class TrackingService extends Service {
         Log.v("onDestroy", "onDestroy");
     }
 
-    public void kalmanFilter(float newSpeed, double newLatitude, double newLongitude, long newTimeStamp, float newAccuracy) {
-        // Uncomment this, if you are receiving accuracy from your gps
-         if (newAccuracy < 1) {
-              newAccuracy = 1;
-         }
-        if (variance < 0) {
-            // if variance < 0, object is unitialised, so initialise with current values
-            latitude = newLatitude;
-            longitude = newLongitude;
-            timeStamp = newTimeStamp;
-            variance = newAccuracy * newAccuracy;
-        } else {
-            // else apply Kalman filter
-            long duration = newTimeStamp - timeStamp;
-            if (duration > 0) {
-                // time has moved on, so the uncertainty in the current position increases
-                variance += duration * newSpeed * newSpeed / 1000;
-                timeStamp = newTimeStamp;
-            }
-
-            // Kalman gain matrix 'k' = Covariance * Inverse(Covariance + MeasurementVariance)
-            // because 'k' is dimensionless,
-            // it doesn't matter that variance has different units to latitude and longitude
-            float k = variance / (variance + newAccuracy * newAccuracy);
-            // apply 'k'
-            latitude += k * (newLatitude - latitude);
-            longitude += k * (newLongitude - longitude);
-            // new Covariance matrix is (IdentityMatrix - k) * Covariance
-            variance = (1 - k) * variance;
-        }
-    }
-
-
-
     private void setTrackingTime() {
         if(isNumeric(trackingTime)) {
             final int countdownMins = Integer.parseInt(trackingTime);
@@ -264,6 +223,7 @@ public class TrackingService extends Service {
                     // notificationId is a unique int for each notification that you must define
                     timeBuilder.setContentTitle("Tracking End")
                                .setContentText("Please tap here if you want to track again.")
+                               .setChannelId(CHANNEL_ID2)
                                .setOngoing(false);
                     timeNotificationManager.notify(TIME_NOTIFICATION_ID, timeBuilder.build());
                     stopForeground(false);
@@ -299,24 +259,39 @@ public class TrackingService extends Service {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Tracking";
-            String description = "Tracking";
+            //NotificationChannel One
+            CharSequence name = "TrackingNow";
+            String description = "TrackingNow";
             int importance = NotificationManager.IMPORTANCE_LOW;
+            //int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setSound(null, null);
             channel.setDescription(description);
-            channel.enableLights(true);
-            channel.enableVibration(true);
+            channel.enableLights(false);
+            //channel.enableVibration(true);
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
             timeNotificationManager = getSystemService(NotificationManager.class);
             timeNotificationManager.createNotificationChannel(channel);
             Log.v("NotificationChannel", "createNotificationChannel success");
+
+            //NotificationChannel Two
+            CharSequence name2 = "TrackingEnd";
+            String description2 = "TrackingEnd";
+            int importance2 = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel2 = new NotificationChannel(CHANNEL_ID2, name2, importance2);
+            channel2.setDescription(description2);
+            channel2.enableLights(true);
+            channel2.enableVibration(true);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            //timeNotificationManager = getSystemService(NotificationManager.class);
+            timeNotificationManager.createNotificationChannel(channel2);
+            Log.v("NotificationChannel", "createNotificationChannel success");
         }
     }
 
     private void setCurrentLocation(Location location) {
-//        kalmanFilter(location.getSpeed(), location.getLatitude(), location.getLongitude(), location.getTime(), location.getAccuracy());
-
         if(isFirstLoc) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
@@ -343,10 +318,6 @@ public class TrackingService extends Service {
         thread.start();
 
         if(!isWebOpen) {
-            /*Intent webViewIntent = new Intent(this, WebViewActivity.class);
-            webViewIntent.putExtra("url", "https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp);
-            Log.v("isWebOpen", "https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp);
-            startActivity(webViewIntent);*/
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://"+TrackingConfig.trackingHost+"/map/?name="+trackingName+"&app="+trackingApp));
             startActivity(browserIntent);
             isWebOpen = true;
@@ -357,7 +328,7 @@ public class TrackingService extends Service {
         //String date = String.valueOf(android.text.format.DateFormat.format("yyyy-MM-dd HH:mm:ss", new java.util.Date()));
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // HH是24小時制，hh是12小時制
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT+8") );
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT+8") ); //設定為台灣時間
         return sdf.format(date);
     }
 
