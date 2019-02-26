@@ -55,7 +55,7 @@ import javax.net.ssl.HttpsURLConnection;
 import tw.org.cic.morsensor_mobile.R;
 
 
-public class TrackingMainViewActivity extends Activity /*implements LocationListener*/ {
+public class TrackingMainViewActivity extends Activity {
     static SharedPreferences settings;
     static final String data = "DATA";
     static final String STATE_NAME = "trackingName";
@@ -106,9 +106,6 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        /*Intent webViewIntent = new Intent(getApplicationContext(), WebViewActivity.class);
-                        webViewIntent.putExtra("url", openMapUrl);
-                        startActivity(webViewIntent);*/
                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(openMapUrl));
                         startActivity(browserIntent);
                     }
@@ -423,6 +420,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         thread.start();
     }
 
+    //get tracking device password
     public void set_tracking_pwd() {
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -474,6 +472,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         thread.start();
     }
 
+    // lead user open GPS
     protected void gps_permissions() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(6000);
@@ -491,11 +490,6 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                 Log.v("GPS", "Success");
                 get_tracking_name();
-//                startTrackingService();
-                /*try {
-                    SuccessCB.call();
-                }
-                catch (Exception e) {}*/
             }
         });
 
@@ -512,7 +506,6 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
                         resolvable.startResolutionForResult(TrackingMainViewActivity.this,
                                 REQUEST_CHECK_SETTINGS);
 
-                        //SuccessCB.call();
                     } catch (IntentSender.SendIntentException sendEx) {
                         // Ignore the error.
                     }
@@ -523,12 +516,7 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
             }
         });
     }
-
-
-    protected void runtime_permissions(/*final Callable<Boolean> SuccessCB*/) {
-        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, TrackingConfig.MY_PERMISSIONS_REQUEST_LOCATION);
-    }
-
+    //catch user open GPS result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
@@ -547,6 +535,11 @@ public class TrackingMainViewActivity extends Activity /*implements LocationList
         }
     }
 
+    // ask for GPS permission
+    protected void runtime_permissions() {
+        requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, TrackingConfig.MY_PERMISSIONS_REQUEST_LOCATION);
+    }
+    // catch GPS permission result
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

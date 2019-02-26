@@ -1,17 +1,17 @@
 #Internal package file, do not edit.
-#Thu Jan 17 17:40:38 CST 2019
-4.path=spo2_testing_gif.gif
+#Sun Feb 24 22:01:37 CST 2019
+4.path=classes.dex
 8.set=ASSET
-6.path=classes.dex
+6.path=spo2_testing_gif.gif
 0.baseType=DIRECTORY
 10.path=iri_app_loading_running.gif
 5.baseType=DIRECTORY
 1.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 8.path=index2.bin
 12.path=mic_action_sleep.gif
-3.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
-4.set=ASSET
-5.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\149
+3.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\167
+4.set=DEX
+5.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 7.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 11.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 9.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
@@ -20,24 +20,24 @@
 0.set=DEX
 6.baseType=DIRECTORY
 7.set=ASSET
-3.set=ASSET
+3.set=DEX
 2.baseType=DIRECTORY
 10.baseType=DIRECTORY
 1.path=mic_action_play.gif
 7.baseType=DIRECTORY
-3.path=index1.bin
+3.path=classes.dex
 10.set=ASSET
-5.path=classes.dex
-0.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\150
+5.path=index1.bin
+0.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\166
 7.path=test.gif
 11.path=fonts/tt0375m_.ttf
 9.path=mic_action_angry.gif
-6.set=DEX
-2.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\148
+6.set=ASSET
+2.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\164
 11.baseType=DIRECTORY
-4.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
+4.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\165
 3.baseType=DIRECTORY
-6.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\147
+6.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 10.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 8.base=C\:\\Users\\Cindy\\Documents\\GitHub\\Mobile_Morsensor\\app\\build\\intermediates\\assets\\debug
 2.set=DEX
@@ -47,7 +47,7 @@
 count=13
 12.baseType=DIRECTORY
 4.baseType=DIRECTORY
-5.set=DEX
+5.set=ASSET
 9.baseType=DIRECTORY
 0.path=classes.dex
 12.set=ASSET
